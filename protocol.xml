@@ -53,14 +53,14 @@ Any inquiries can be addressed to:
 	<Vendor></Vendor>
 	<VendorOID>1.3.6.1.4.1.8813.2.</VendorOID>
 	<DeviceOID></DeviceOID>
-	<ElementType></ElementType>
+	<ElementType>pars</ElementType>
 	<Type relativeTimers="true">virtual</Type>
 	<Display defaultPage="General" pageOrder="General"/>
 	<SNMP includepages="true">auto</SNMP>
 
 	<Compliancies>
 		<CassandraReady>true</CassandraReady>
-		<MinimumRequiredVersion>10.1.0.0 - 9966</MinimumRequiredVersion>
+		<MinimumRequiredVersion>10.2.0.0 - 12603</MinimumRequiredVersion>
 	</Compliancies>
 
 	<Params>

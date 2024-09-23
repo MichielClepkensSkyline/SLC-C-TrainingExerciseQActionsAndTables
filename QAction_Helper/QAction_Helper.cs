@@ -46,6 +46,11 @@ public static class Parameter
 			public const int transportstreamsoverviewnumberofservices_105 = 105;
 			/// <summary>PID: 105 | Type: read</summary>
 			public const int transportstreamsoverviewnumberofservices = 105;
+			/// <summary>PID: 106 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int transportstreamsoverviewlastpoll_106 = 106;
+			/// <summary>PID: 106 | Type: read</summary>
+			public const int transportstreamsoverviewlastpoll = 106;
 			public class Write
 			{
 			}
@@ -77,6 +82,11 @@ public static class Parameter
 			public const int transportstreamsoverviewnumberofservices_105 = 4;
 			/// <summary>IDX: 4 | Type: read</summary>
 			public const int transportstreamsoverviewnumberofservices = 4;
+			/// <summary>IDX: 5 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int transportstreamsoverviewlastpoll_106 = 5;
+			/// <summary>IDX: 5 | Type: read</summary>
+			public const int transportstreamsoverviewlastpoll = 5;
 		}
 	}
 }
@@ -104,6 +114,8 @@ public interface SLProtocolExt : SLProtocol
 	object Transportstreamsoverviewnetworkid { get; set; }
 	object Transportstreamsoverviewnumberofservices_105 { get; set; }
 	object Transportstreamsoverviewnumberofservices { get; set; }
+	object Transportstreamsoverviewlastpoll_106 { get; set; }
+	object Transportstreamsoverviewlastpoll { get; set; }
 	WriteParameters Write { get; set; }
 }
 public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
@@ -139,6 +151,11 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Transportstreamsoverviewnumberofservices_105 {get { return GetParameter(105); }set { SetParameter(105, value); }}
 	/// <summary>PID: 105  | Type: read</summary>
 	public System.Object Transportstreamsoverviewnumberofservices {get { return GetParameter(105); }set { SetParameter(105, value); }}
+	/// <summary>PID: 106  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Transportstreamsoverviewlastpoll_106 {get { return GetParameter(106); }set { SetParameter(106, value); }}
+	/// <summary>PID: 106  | Type: read</summary>
+	public System.Object Transportstreamsoverviewlastpoll {get { return GetParameter(106); }set { SetParameter(106, value); }}
 	public WriteParameters Write { get; set; }
 	public ConcreteSLProtocolExt()
 	{
@@ -181,8 +198,13 @@ public class TransportstreamsoverviewQActionRow : QActionTableRow
 	public System.Object Transportstreamsoverviewnumberofservices_105 { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
 	/// <summary>PID: 105 | Type: read</summary>
 	public System.Object Transportstreamsoverviewnumberofservices { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
-	public TransportstreamsoverviewQActionRow() : base(0, 5) { }
-	public TransportstreamsoverviewQActionRow(System.Object[] oRow) : base(0, 5, oRow) { }
+	/// <summary>PID: 106 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Transportstreamsoverviewlastpoll_106 { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
+	/// <summary>PID: 106 | Type: read</summary>
+	public System.Object Transportstreamsoverviewlastpoll { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
+	public TransportstreamsoverviewQActionRow() : base(0, 6) { }
+	public TransportstreamsoverviewQActionRow(System.Object[] oRow) : base(0, 6, oRow) { }
 	public static implicit operator TransportstreamsoverviewQActionRow(System.Object[] source) { return new TransportstreamsoverviewQActionRow(source); }
 	public static implicit operator System.Object[](TransportstreamsoverviewQActionRow source) { return source.ToObjectArray(); }
 }

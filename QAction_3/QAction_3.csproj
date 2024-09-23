@@ -5,9 +5,9 @@
     <Copyright>© Skyline Communications</Copyright>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <LangVersion>7.3</LangVersion>
-    <RootNamespace>Skyline.Protocol</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\QAction_1\QAction_1.csproj" />
     <ProjectReference Include="..\QAction_Helper\QAction_Helper.csproj" />
   </ItemGroup>
   <ItemGroup>
@@ -16,7 +16,7 @@
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties DisLinkId="1" DisProjectType="qactionProject" DisLinkedXmlFile="..\protocol.xml" />
+      <UserProperties DisLinkedXmlFile="..\protocol.xml" DisProjectType="qactionProject" DisLinkId="3" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

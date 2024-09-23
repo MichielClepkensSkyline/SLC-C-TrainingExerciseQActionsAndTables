@@ -48,14 +48,14 @@ Any inquiries can be addressed to:
 	<Name>Excercise QActions And Tables</Name>
 	<Description>Excercise QActions And Tables DataMiner connector</Description>
 	<Version>1.0.0.1</Version>
-	<IntegrationID>DMS-DRV-</IntegrationID>
+	<IntegrationID>DMS-DRV-001</IntegrationID>
 	<Provider>Skyline Communications</Provider>
-	<Vendor></Vendor>
-	<VendorOID>1.3.6.1.4.1.8813.2.</VendorOID>
-	<DeviceOID></DeviceOID>
+	<Vendor>Skyline Communications</Vendor>
+	<VendorOID>1.3.6.1.4.1.8813.2.1</VendorOID>
+	<DeviceOID>1001</DeviceOID>
 	<ElementType>pars</ElementType>
 	<Type relativeTimers="true">virtual</Type>
-	<Display defaultPage="General" pageOrder="General"/>
+	<Display defaultPage="General" pageOrder="General" wideColumnPages=""/>
 	<SNMP includepages="true">auto</SNMP>
 
 	<Compliancies>
@@ -69,11 +69,146 @@ Any inquiries can be addressed to:
 			<Description>After Startup</Description>
 			<Type>dummy</Type>
 		</Param>
+		<Param id="3">
+			<Name>dummyParamForTriggeringQaction</Name>
+			<Description>Dummy Param Used To Trigger Parse JSON QAction</Description>
+			<Type>dummy</Type>
+		</Param>
+		
+		<Param id="100">
+			<Name>transportStreamsOverview</Name>
+			<Description>Transport Streams</Description>
+			<Type>array</Type>
+			<ArrayOptions index="0" options=";naming=/102">
+				<ColumnOption idx="0" pid="101" type="retrieved" options=""/>
+				<ColumnOption idx="1" pid="102" type="retrieved" options=""></ColumnOption>
+				<ColumnOption idx="2" pid="103" type="retrieved" options=""></ColumnOption>
+				<ColumnOption idx="3" pid="104" type="retrieved" options=""></ColumnOption>
+				<ColumnOption idx="4" pid="105" type="retrieved" options=""></ColumnOption>
+			</ArrayOptions>
+			<Information>
+				<Subtext>This is an overview of all Transport Streams.</Subtext>
+			</Information>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="tab=columns:101|0-102|1-103|2-104|3-105|4,width:100-100-100-100-129,sort:STRING-INT-STRING-INT-INT,lines:25,filter:true">table</Type>
+			</Measurement>
+		</Param>
+		<Param id="101" trending="false">
+			<Name>transportStreamsOverviewInstance</Name>
+			<Description>Instance (Transport Streams Overview)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the key used internally by DataMiner to identify the table entries.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="102" trending="false">
+			<Name>transportStreamsOverviewName</Name>
+			<Description>Name [IDX] (Transport Streams Overview)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is unique name of the Transport Stream.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="103" trending="false">
+			<Name>transportStreamsOverviewMulticast</Name>
+			<Description>Multicast (Transport Streams Overview)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>The multicast parameter specifies the IP address used for delivering the transport stream to multiple receivers in a multicast group.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="104" trending="false"> 
+			<Name>transportStreamsOverviewNetworkId</Name>
+			<Description>Network ID (Transport Streams Overview)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This parameter identifies the network of the transport stream.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="105" trending="false">
+			<Name>transportStreamsOverviewNumberOfServices</Name>
+			<Description>Number of Services (Transport Streams Overview)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This number represents number of services attached to specific transport stream.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Units>Services</Units>
+				<Range>
+					<Low>0</Low>				
+				</Range>
+			</Display>
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
+		</Param>
 	</Params>
 
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />
+		<QAction id="3" name="Poll and Parse Data" encoding="csharp" triggers="3">
+		</QAction>
 	</QActions>
 
 	<Groups>
@@ -83,6 +218,14 @@ Any inquiries can be addressed to:
 			<Type>poll action</Type>
 			<Content>
 				<Action>2</Action>
+			</Content>
+		</Group>
+		<Group id="3">
+			<Name>Poll Json Data</Name>
+			<Description>Poll Json Data</Description>
+			<Type>poll action</Type>
+			<Content>
+				<Action>3</Action>
 			</Content>
 		</Group>
 	</Groups>
@@ -110,6 +253,11 @@ Any inquiries can be addressed to:
 			<On id="2">parameter</On>
 			<Type>run actions</Type>
 		</Action>
+		<Action id="3">
+			<Name>Execute Poll and Parse Data QAction</Name>
+			<On id="3">parameter</On>
+			<Type>run actions</Type>
+		</Action>
 	</Actions>
 
 	<Timers>
@@ -122,9 +270,10 @@ Any inquiries can be addressed to:
 		</Timer>
 		<Timer id="2">
 			<Name>Medium Timer (1m)</Name>
-			<Time initial="true" dataDisplay="30000">60000</Time>
+			<Time initial="true">60000</Time><!--dataDisplay="30000"-->
 			<Interval>75</Interval>
 			<Content>
+				<Group>3</Group>
 			</Content>
 		</Timer>
 		<Timer id="3">
@@ -134,6 +283,7 @@ Any inquiries can be addressed to:
 			<Content>
 			</Content>
 		</Timer>
+		
 	</Timers>
 
 	<PortSettings>
@@ -151,7 +301,7 @@ Any inquiries can be addressed to:
 									<MinorVersion id="1">
 										<Date>2024-01-09</Date>
 										<Provider>
-											<Author>XXX</Author>
+											<Author>EnisAB</Author>
 											<Company>Skyline Communications</Company>
 										</Provider>
 										<Changes>

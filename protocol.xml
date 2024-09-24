@@ -417,7 +417,7 @@ Any inquiries can be addressed to:
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />
-		<QAction id="3" name="Poll and Parse Data" encoding="csharp" triggers="3">
+		<QAction id="3" name="Poll and Parse Data" encoding="csharp" triggers="3;4">
 		</QAction>
 	</QActions>
 
@@ -450,14 +450,6 @@ Any inquiries can be addressed to:
 				<Id>1</Id>
 			</Content>
 		</Trigger>
-		<Trigger id="2">
-			<Name>Force Poll Data</Name>
-			<On id="4">parameter</On>
-			<Time>change</Time>
-			<Type>action</Type>
-			<Content>
-				<Id>3</Id>
-			</Content>
 		</Trigger>
 	</Triggers>
 

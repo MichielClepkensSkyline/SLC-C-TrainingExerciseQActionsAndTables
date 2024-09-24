@@ -55,7 +55,7 @@ Any inquiries can be addressed to:
 	<DeviceOID>1001</DeviceOID>
 	<ElementType>pars</ElementType>
 	<Type relativeTimers="true">virtual</Type>
-	<Display defaultPage="General" pageOrder="General" wideColumnPages=""/>
+	<Display defaultPage="General" pageOrder="General" wideColumnPages="General"/>
 	<SNMP includepages="true">auto</SNMP>
 
 	<Compliancies>
@@ -63,6 +63,10 @@ Any inquiries can be addressed to:
 		<MinimumRequiredVersion>10.2.0.0 - 12603</MinimumRequiredVersion>
 	</Compliancies>
 
+	<Relations>
+		<Relation name="Relation between Transport Stream and Service." path="100;200"/>
+	</Relations>
+	
 	<Params>
 		<Param id="2">
 			<Name>AfterStartup</Name>
@@ -92,7 +96,7 @@ Any inquiries can be addressed to:
 					<Position>
 						<Page>General</Page>
 						<Column>0</Column>
-						<Row>1</Row>
+						<Row>2</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -109,15 +113,15 @@ Any inquiries can be addressed to:
 		
 		<Param id="100">
 			<Name>transportStreamsOverview</Name>
-			<Description>Transport Streams</Description>
+			<Description>Transport Streams Overview</Description>
 			<Type>array</Type>
 			<ArrayOptions index="0" options=";naming=/102">
 				<ColumnOption idx="0" pid="101" type="retrieved" options=""/>
 				<ColumnOption idx="1" pid="102" type="retrieved" options=""/>
 				<ColumnOption idx="2" pid="103" type="retrieved" options=""/>
 				<ColumnOption idx="3" pid="104" type="retrieved" options=""/>
-				<ColumnOption idx="4" pid="105" type="retrieved" options=""/>
-				<ColumnOption idx="5" pid="106" type="retrieved" options=""/>
+				<ColumnOption idx="4" pid="106" type="retrieved" options="" />
+				<ColumnOption idx="5" pid="105" type="retrieved" options=""/>
 			</ArrayOptions>
 			<Information>
 				<Subtext>This is an overview of all Transport Streams.</Subtext>
@@ -133,7 +137,7 @@ Any inquiries can be addressed to:
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:101|0-102|1-103|2-104|3-105|4-106|5,width:100-100-100-100-129-144,sort:STRING|ASC|1-INT-STRING-INT-INT-INT|ASC|0,lines:25,filter:true">table</Type>
+				<Type options="tab=columns:101|0-102|1-103|2-104|3-106|4-105|5,width:110-154-141-113-144-129,sort:STRING|ASC|1-INT-STRING-INT-INT|ASC|0-INT,lines:15,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="101" trending="false">
@@ -254,6 +258,152 @@ Any inquiries can be addressed to:
 			</Display>
 			<Measurement>
 				<Type options="datetime">number</Type>
+			</Measurement>
+		</Param>
+		
+		<Param id="200">
+			<Name>servicesOverview</Name>
+			<Description>Services Overview</Description>
+			<Type>array</Type>
+			<ArrayOptions index="0" options=";naming=/202">
+				<ColumnOption idx="0" pid="201" type="retrieved" options=""/>
+				<ColumnOption idx="1" pid="202" type="retrieved" options=""/>
+				<ColumnOption idx="2" pid="203" type="retrieved" options=""/>
+				<ColumnOption idx="3" pid="204" type="retrieved" options=""/>
+				<ColumnOption idx="4" pid="205" type="retrieved" options=""/>
+				<ColumnOption idx="5" pid="206" type="retrieved" options=";foreignKey=100"/>
+			</ArrayOptions>
+			<Information>
+				<Subtext>This is an overview of all Services.</Subtext>
+			</Information>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>1</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="tab=columns:201|0-202|1-203|2-204|3-205|4-206|5,width:100-140-145-145-144-154,sort:STRING|ASC|1-STRING-STRING-STRING-INT|ASC|0-STRING,lines:15,filter:true">table</Type>
+			</Measurement>
+		</Param>
+		<Param id="201" trending="false">
+			<Name>servicesOverviewInstance</Name>
+			<Description>Instance (Services Overview)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the key used internally by DataMiner to identify the table entries.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="202" trending="false">
+			<Name>servicesOverviewName</Name>
+			<Description>Name [IDX] (Services Overview)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is unique name of the Service.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="203" trending="false">
+			<Name>servicesOverviewType</Name>
+			<Description>Service Type (Services Overview)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This represents type of Service provided.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="204" trending="false">
+			<Name>servicesOverviewProvider</Name>
+			<Description>Service Provider (Services Overview)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This represents provider of the Service.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="205" trending="false">
+			<Name>servicesOverviewLastPoll</Name>
+			<Description>Last Poll Timestamp (Services Overview)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This Timestamp represents when the last time row was polled.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+				<Decimals>8</Decimals>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Decimals>8</Decimals>
+			</Display>
+			<Measurement>
+				<Type options="datetime">number</Type>
+			</Measurement>
+		</Param>
+		<Param id="206" trending="false">
+			<Name>servicesOverviewTransportStreamFK</Name>
+			<Description>Transport Streams FK (Services Overview)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This column represents Foreign Key for table Transport Streams.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
 			</Measurement>
 		</Param>
 	</Params>

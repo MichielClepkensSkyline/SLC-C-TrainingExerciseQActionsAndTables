@@ -20,9 +20,14 @@ public static class QAction
 	{
 		try
 		{
+			// Poll data from the JSON file containing transport streams and services
 			var polledData = PollData();
 
+			// Update the transport streams table with the newly polled data
 			UpdateTransportStreamsTable(protocol, polledData);
+
+			// Update the services table with the corresponding services from the polled data
+			UpdateServicesTable(protocol, polledData);
 		}
 		catch (Exception ex)
 		{
@@ -32,18 +37,19 @@ public static class QAction
 
 	private static TransportStreamsData PollData()
 	{
-		// File path to Data.json
+		// Define the path to the JSON data file
 		string filePath = @"C:\Users\EnisAB\Desktop\Data\Data.json";
 
+		// Read the content of the JSON file
 		string jsonContent = File.ReadAllText(filePath);
 
-		// Deserialize the JSON string into TransportStreamsData model
+		// Deserialize an return the JSON content into TransportStreamsData object
 		return JsonConvert.DeserializeObject<TransportStreamsData>(jsonContent);
 	}
 
 	private static void UpdateTransportStreamsTable(SLProtocol protocol, TransportStreamsData polledData)
 	{
-		// TODO: LINQ
+		// Transform the polled data into rows suitable for the Transport Streams overview table
 		var rowsToAdd = polledData.TransportStreams
 			.Select(transportStream => new TransportstreamsoverviewQActionRow
 			{
@@ -57,15 +63,27 @@ public static class QAction
 			.Select(transportStreamRow => transportStreamRow.ToObjectArray())
 			.ToList();
 
+		// Update the transport streams table in the protocol with the newly created rows
 		protocol.FillArray(Parameter.Transportstreamsoverview.tablePid, rowsToAdd, NotifyProtocol.SaveOption.Full);
+	}
 
-		//if (!protocol.Exists(Parameter.Transportstreamsoverview.tablePid, transportStreamRow.Key))
-		//{
-		//	protocol.AddRow(Parameter.Transportstreamsoverview.tablePid, transportStreamRow.ToObjectArray());
-		//}
-		//else
-		//{
-		//	protocol.SetRow(Parameter.Transportstreamsoverview.tablePid, transportStreamRow.Key, transportStreamRow.ToObjectArray());
-		//}
+	private static void UpdateServicesTable(SLProtocol protocol, TransportStreamsData polledData)
+	{
+		// Transform the services from each transport stream into rows for the Services overview table
+		var rowsToAdd = polledData.TransportStreams
+			.SelectMany(transportStream => transportStream.Services.Select(service => new ServicesoverviewQActionRow
+			{
+				Servicesoverviewinstance_201 = service.ServiceId.ToString(),
+				Servicesoverviewname_202 = service.ServiceName.Trim(),
+				Servicesoverviewtype_203 = service.ServiceType,
+				Servicesoverviewprovider_204 = service.ServiceProvider,
+				Servicesoverviewlastpoll_205 = DateTime.Now.ToOADate(),
+				Servicesoverviewtransportstreamfk_206 = Convert.ToString(transportStream.TsId),
+			}))
+			.Select(serviceRow => serviceRow.ToObjectArray())
+			.ToList();
+
+		// Update the services table in the protocol with the newly created rows
+		protocol.FillArray(Parameter.Servicesoverview.tablePid, rowsToAdd, NotifyProtocol.SaveOption.Full);
 	}
 }

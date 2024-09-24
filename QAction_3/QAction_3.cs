@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+
 using Newtonsoft.Json;
 using Skyline.DataMiner.Scripting;
 using Skyline.Protocol.QActionsAndTables;
@@ -40,9 +43,9 @@ public static class QAction
 
 	private static void UpdateTransportStreamsTable(SLProtocol protocol, TransportStreamsData polledData)
 	{
-		foreach (TransportStream transportStream in polledData.TransportStreams)
-		{
-			TransportstreamsoverviewQActionRow transportStreamRow = new TransportstreamsoverviewQActionRow
+		// TODO: LINQ
+		var rowsToAdd = polledData.TransportStreams
+			.Select(transportStream => new TransportstreamsoverviewQActionRow
 			{
 				Transportstreamsoverviewinstance_101 = transportStream.TsId.ToString(),
 				Transportstreamsoverviewname_102 = transportStream.TsName.Trim(),
@@ -50,16 +53,19 @@ public static class QAction
 				Transportstreamsoverviewnetworkid_104 = transportStream.NetworkId.ToString(),
 				Transportstreamsoverviewnumberofservices_105 = transportStream.Services.Count,
 				Transportstreamsoverviewlastpoll_106 = DateTime.Now.ToOADate(),
-			};
+			})
+			.Select(transportStreamRow => transportStreamRow.ToObjectArray())
+			.ToList();
 
-			if (!protocol.Exists(Parameter.Transportstreamsoverview.tablePid, transportStreamRow.Key))
-			{
-				protocol.AddRow(Parameter.Transportstreamsoverview.tablePid, transportStreamRow.ToObjectArray());
-			}
-			else
-			{
-				protocol.SetRow(Parameter.Transportstreamsoverview.tablePid, transportStreamRow.Key, transportStreamRow.ToObjectArray());
-			}
-		}
+		protocol.FillArray(Parameter.Transportstreamsoverview.tablePid, rowsToAdd, NotifyProtocol.SaveOption.Full);
+
+		//if (!protocol.Exists(Parameter.Transportstreamsoverview.tablePid, transportStreamRow.Key))
+		//{
+		//	protocol.AddRow(Parameter.Transportstreamsoverview.tablePid, transportStreamRow.ToObjectArray());
+		//}
+		//else
+		//{
+		//	protocol.SetRow(Parameter.Transportstreamsoverview.tablePid, transportStreamRow.Key, transportStreamRow.ToObjectArray());
+		//}
 	}
 }

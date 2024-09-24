@@ -75,6 +75,38 @@ Any inquiries can be addressed to:
 			<Type>dummy</Type>
 		</Param>
 		
+		<Param id="4">
+			<Name>forcePollData</Name>
+			<Type>write</Type>
+			<Information>
+				<Subtext>Force Poll Data on Click</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>1</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Force Poll</Display>
+						<Value>1</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		
 		<Param id="100">
 			<Name>transportStreamsOverview</Name>
 			<Description>Transport Streams</Description>
@@ -260,6 +292,15 @@ Any inquiries can be addressed to:
 			<Type>action</Type>
 			<Content>
 				<Id>1</Id>
+			</Content>
+		</Trigger>
+		<Trigger id="2">
+			<Name>Force Poll Data</Name>
+			<On id="4">parameter</On>
+			<Time>change</Time>
+			<Type>action</Type>
+			<Content>
+				<Id>3</Id>
 			</Content>
 		</Trigger>
 	</Triggers>

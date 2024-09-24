@@ -10,6 +10,11 @@ public static class Parameter
 {
 	public class Write
 	{
+		/// <summary>PID: 4 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int forcepolldata_4 = 4;
+		/// <summary>PID: 4 | Type: write</summary>
+		public const int forcepolldata = 4;
 	}
 	public class Transportstreamsoverview
 	{
@@ -92,6 +97,8 @@ public static class Parameter
 }
 public class WriteParameters
 {
+	/// <summary>PID: 4  | Type: write | DISCREETS: Force Poll = 1</summary>
+	public System.Object Forcepolldata {get { return Protocol.GetParameter(4); }set { Protocol.SetParameter(4, value); }}
 	public SLProtocolExt Protocol;
 	public WriteParameters(SLProtocolExt protocol)
 	{
@@ -104,6 +111,8 @@ public interface SLProtocolExt : SLProtocol
 	TransportstreamsoverviewQActionTable transportstreamsoverview { get; set; }
 	object Afterstartup_dummy { get; set; }
 	object Dummyparamfortriggeringqaction_dummy { get; set; }
+	object Forcepolldata_4 { get; set; }
+	object Forcepolldata { get; set; }
 	object Transportstreamsoverviewinstance_101 { get; set; }
 	object Transportstreamsoverviewinstance { get; set; }
 	object Transportstreamsoverviewname_102 { get; set; }
@@ -126,6 +135,10 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Afterstartup_dummy {get { return GetParameter(2); }set { SetParameter(2, value); }}
 	/// <summary>PID: 3  | Type: dummy</summary>
 	public System.Object Dummyparamfortriggeringqaction_dummy {get { return GetParameter(3); }set { SetParameter(3, value); }}
+	/// <summary>PID: 4  | Type: write | DISCREETS: Force Poll = 1</summary>
+	public System.Object Forcepolldata_4 {get { return GetParameter(4); }set { SetParameter(4, value); }}
+	/// <summary>PID: 4  | Type: write | DISCREETS: Force Poll = 1</summary>
+	public System.Object Forcepolldata {get { return Write.Forcepolldata; }set { Write.Forcepolldata = value; }}
 	/// <summary>PID: 101  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Transportstreamsoverviewinstance_101 {get { return GetParameter(101); }set { SetParameter(101, value); }}

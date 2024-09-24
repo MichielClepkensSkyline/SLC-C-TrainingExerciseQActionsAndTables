@@ -78,7 +78,6 @@ Any inquiries can be addressed to:
 			<Description>Dummy Param Used To Trigger Parse JSON QAction</Description>
 			<Type>dummy</Type>
 		</Param>
-		
 		<Param id="4">
 			<Name>forcePollData</Name>
 			<Type>write</Type>
@@ -120,8 +119,8 @@ Any inquiries can be addressed to:
 				<ColumnOption idx="1" pid="102" type="retrieved" options=""/>
 				<ColumnOption idx="2" pid="103" type="retrieved" options=""/>
 				<ColumnOption idx="3" pid="104" type="retrieved" options=""/>
-				<ColumnOption idx="4" pid="106" type="retrieved" options="" />
-				<ColumnOption idx="5" pid="105" type="retrieved" options=""/>
+				<ColumnOption idx="4" pid="106" type="retrieved" options=";disableHeaderSum" />
+				<ColumnOption idx="5" pid="105" type="retrieved" options=";disableHeaderSum;enableHistogram;enableHeatmap"/>
 			</ArrayOptions>
 			<Information>
 				<Subtext>This is an overview of all Transport Streams.</Subtext>
@@ -216,7 +215,7 @@ Any inquiries can be addressed to:
 				<Type>string</Type>
 			</Measurement>
 		</Param>
-		<Param id="105" trending="false">
+		<Param id="105" trending="true">
 			<Name>transportStreamsOverviewNumberOfServices</Name>
 			<Description>Number of Services (Transport Streams Overview)</Description>
 			<Type>read</Type>
@@ -235,11 +234,15 @@ Any inquiries can be addressed to:
 					<Low>0</Low>
 				</Range>
 			</Display>
+			<Alarm>
+				<Monitored>true</Monitored>
+				<CL>0</CL>
+			</Alarm>
 			<Measurement>
 				<Type>number</Type>
 			</Measurement>
 		</Param>
-		<Param id="106" trending="false">
+		<Param id="106" trending="false" save="true">
 			<Name>transportStreamsOverviewLastPoll</Name>
 			<Description>Last Poll Timestamp (Transport Streams Overview)</Description>
 			<Type>read</Type>
@@ -252,6 +255,9 @@ Any inquiries can be addressed to:
 				<LengthType>next param</LengthType>
 				<Decimals>8</Decimals>
 			</Interprete>
+			<Alarm>
+				<Monitored>false</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 				<Decimals>8</Decimals>
@@ -366,7 +372,7 @@ Any inquiries can be addressed to:
 				<Type>string</Type>
 			</Measurement>
 		</Param>
-		<Param id="205" trending="false">
+		<Param id="205" trending="false" save="true">
 			<Name>servicesOverviewLastPoll</Name>
 			<Description>Last Poll Timestamp (Services Overview)</Description>
 			<Type>read</Type>
@@ -483,7 +489,7 @@ Any inquiries can be addressed to:
 		</Timer>
 		<Timer id="2">
 			<Name>Medium Timer (1m)</Name>
-			<Time initial="true">60000</Time><!--dataDisplay="30000"-->
+			<Time initial="true">60000</Time>
 			<Interval>75</Interval>
 			<Content>
 				<Group>3</Group>

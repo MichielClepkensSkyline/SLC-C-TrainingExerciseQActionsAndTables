@@ -77,8 +77,7 @@ public static class QAction
 				Servicesoverviewname_202 = service.ServiceName.Trim(),
 				Servicesoverviewtype_203 = service.ServiceType,
 				Servicesoverviewprovider_204 = service.ServiceProvider,
-				Servicesoverviewlastpoll_205 = DateTime.Now.ToOADate(),
-				Servicesoverviewtransportstreamfk_206 = Convert.ToString(transportStream.TsId),
+				Servicesoverviewtransportstreamfk_205 = Convert.ToString(transportStream.TsId),
 			}))
 			.Select(serviceRow => serviceRow.ToObjectArray())
 			.ToList();

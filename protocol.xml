@@ -242,7 +242,7 @@ Any inquiries can be addressed to:
 				<Type>number</Type>
 			</Measurement>
 		</Param>
-		<Param id="106" trending="false" save="true">
+		<Param id="106" trending="false">
 			<Name>transportStreamsOverviewLastPoll</Name>
 			<Description>Last Poll Timestamp (Transport Streams Overview)</Description>
 			<Type>read</Type>

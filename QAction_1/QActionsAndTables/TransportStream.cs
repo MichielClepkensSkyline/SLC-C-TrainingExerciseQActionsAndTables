@@ -6,7 +6,7 @@
 	public class TransportStream
 	{
 		[JsonProperty("ts_id")]
-		public int TsId { get; set; }
+		public int? TsId { get; set; }
 
 		[JsonProperty("ts_name")]
 		public string TsName { get; set; }
@@ -18,7 +18,7 @@
 		public string SourceIp { get; set; }
 
 		[JsonProperty("network_id")]
-		public int NetworkId { get; set; }
+		public int? NetworkId { get; set; }
 
 		[JsonProperty("services")]
 		public List<Service> Services { get; set; }

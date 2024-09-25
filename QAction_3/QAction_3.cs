@@ -20,13 +20,10 @@ public static class QAction
 	{
 		try
 		{
-			// Poll data from the JSON file containing transport streams and services
 			var polledData = PollData();
 
-			// Update the transport streams table with the newly polled data
 			UpdateTransportStreamsTable(protocol, polledData);
 
-			// Update the services table with the corresponding services from the polled data
 			UpdateServicesTable(protocol, polledData);
 		}
 		catch (Exception ex)
@@ -37,13 +34,11 @@ public static class QAction
 
 	private static TransportStreamsData PollData()
 	{
-		// Define the path to the JSON data file
 		string filePath = @"C:\Users\EnisAB\Desktop\Data\Data.json";
 
-		// Read the content of the JSON file
 		string jsonContent = File.ReadAllText(filePath);
 
-		// Deserialize an return the JSON content into TransportStreamsData object
+		// Deserialize the JSON content into TransportStreamsData object and return it
 		return JsonConvert.DeserializeObject<TransportStreamsData>(jsonContent);
 	}
 
@@ -53,18 +48,21 @@ public static class QAction
 		var rowsToAdd = polledData.TransportStreams
 			.Select(transportStream => new TransportstreamsoverviewQActionRow
 			{
-				Transportstreamsoverviewinstance_101 = transportStream.TsId.ToString(),
+				Transportstreamsoverviewinstance_101 = Convert.ToString(transportStream.TsId),
 				Transportstreamsoverviewname_102 = transportStream.TsName.Trim(),
 				Transportstreamsoverviewmulticast_103 = transportStream.Multicast,
-				Transportstreamsoverviewnetworkid_104 = transportStream.NetworkId.ToString(),
-				Transportstreamsoverviewnumberofservices_105 = transportStream.Services.Count,
-				Transportstreamsoverviewlastpoll_106 = DateTime.Now.ToOADate(),
+				Transportstreamsoverviewnetworkid_104 = Convert.ToString(transportStream.NetworkId),
+				Transportstreamsoverviewlastpoll_105 = DateTime.Now.ToOADate(),
+				Transportstreamsoverviewnumberofservices_106 = transportStream.Services.Count,
 			})
 			.Select(transportStreamRow => transportStreamRow.ToObjectArray())
 			.ToList();
 
-		// Update the transport streams table in the protocol with the newly created rows
 		protocol.FillArray(Parameter.Transportstreamsoverview.tablePid, rowsToAdd, NotifyProtocol.SaveOption.Full);
+
+		var numOfTransportStreamsWithNoServices = polledData.TransportStreams.Count(ts => ts.Services.Count == 0);
+		protocol.SetParameter(Parameter.numoftransportstreamswithnoservices, numOfTransportStreamsWithNoServices);
+		protocol.Log("Number of transport streams with zero services:" + numOfTransportStreamsWithNoServices.ToString());
 	}
 
 	private static void UpdateServicesTable(SLProtocol protocol, TransportStreamsData polledData)
@@ -73,7 +71,7 @@ public static class QAction
 		var rowsToAdd = polledData.TransportStreams
 			.SelectMany(transportStream => transportStream.Services.Select(service => new ServicesoverviewQActionRow
 			{
-				Servicesoverviewinstance_201 = service.ServiceId.ToString(),
+				Servicesoverviewinstance_201 = Convert.ToString(service.ServiceId),
 				Servicesoverviewname_202 = service.ServiceName.Trim(),
 				Servicesoverviewtype_203 = service.ServiceType,
 				Servicesoverviewprovider_204 = service.ServiceProvider,
@@ -82,7 +80,6 @@ public static class QAction
 			.Select(serviceRow => serviceRow.ToObjectArray())
 			.ToList();
 
-		// Update the services table in the protocol with the newly created rows
 		protocol.FillArray(Parameter.Servicesoverview.tablePid, rowsToAdd, NotifyProtocol.SaveOption.Full);
 	}
 }

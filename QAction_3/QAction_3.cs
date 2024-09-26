@@ -12,6 +12,9 @@ using Skyline.Protocol.QActionsAndTables;
 /// </summary>
 public static class QAction
 {
+	private const string NotAvailableString = "-1";
+	private const int NotAvailableNumber = -1;
+
 	/// <summary>
 	/// The QAction entry point.
 	/// </summary>
@@ -53,12 +56,12 @@ public static class QAction
 		var rowsToAdd = polledData.TransportStreams
 			.Select(transportStream => new TransportstreamsoverviewQActionRow
 			{
-				Transportstreamsoverviewinstance_101 = Convert.ToString(transportStream.TsId),
-				Transportstreamsoverviewname_102 = transportStream.TsName,
-				Transportstreamsoverviewmulticast_103 = transportStream.Multicast,
-				Transportstreamsoverviewnetworkid_104 = Convert.ToString(transportStream.NetworkId),
+				Transportstreamsoverviewinstance_101 = transportStream.TsId.HasValue ? transportStream.TsId.ToString() : NotAvailableString,
+				Transportstreamsoverviewname_102 = transportStream.TsName ?? NotAvailableString,
+				Transportstreamsoverviewmulticast_103 = transportStream.Multicast ?? NotAvailableString,
+				Transportstreamsoverviewnetworkid_104 = transportStream.NetworkId.HasValue ? transportStream.NetworkId.ToString() : NotAvailableString,
 				Transportstreamsoverviewlastpoll_105 = DateTime.Now.ToOADate(),
-				Transportstreamsoverviewnumberofservices_106 = transportStream.Services != null ? transportStream.Services.Count : 0,
+				Transportstreamsoverviewnumberofservices_106 = transportStream.Services?.Count ?? NotAvailableNumber,
 			})
 			.Select(transportStreamRow => transportStreamRow.ToObjectArray())
 			.ToList();
@@ -75,11 +78,11 @@ public static class QAction
 			.Where(transportStream => transportStream.Services != null)
 			.SelectMany(transportStream => transportStream.Services.Select(service => new ServicesoverviewQActionRow
 			{
-				Servicesoverviewinstance_201 = Convert.ToString(service.ServiceId),
-				Servicesoverviewname_202 = service.ServiceName,
-				Servicesoverviewtype_203 = service.ServiceType,
-				Servicesoverviewprovider_204 = service.ServiceProvider,
-				Servicesoverviewtransportstreaminstance_205 = Convert.ToString(transportStream.TsId),
+				Servicesoverviewinstance_201 = service.ServiceId.HasValue ? service.ServiceId.ToString() : NotAvailableString,
+				Servicesoverviewname_202 = service.ServiceName ?? NotAvailableString,
+				Servicesoverviewtype_203 = service.ServiceType ?? NotAvailableString,
+				Servicesoverviewprovider_204 = service.ServiceProvider ?? NotAvailableString,
+				Servicesoverviewtransportstreaminstance_205 = transportStream.TsId.HasValue ? transportStream.TsId.ToString() : NotAvailableString,
 			}))
 			.Select(serviceRow => serviceRow.ToObjectArray())
 			.ToList();

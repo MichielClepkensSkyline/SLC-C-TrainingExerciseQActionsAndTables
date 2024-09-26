@@ -238,55 +238,55 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Transportstreamsoverviewinstance_101 {get { return GetParameter(101); }set { SetParameter(101, value); }}
 	/// <summary>PID: 101  | Type: read</summary>
 	public System.Object Transportstreamsoverviewinstance {get { return GetParameter(101); }set { SetParameter(101, value); }}
-	/// <summary>PID: 102  | Type: read</summary>
+	/// <summary>PID: 102  | Type: read | EXCEPTIONS: N/A = -1</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Transportstreamsoverviewname_102 {get { return GetParameter(102); }set { SetParameter(102, value); }}
-	/// <summary>PID: 102  | Type: read</summary>
+	/// <summary>PID: 102  | Type: read | EXCEPTIONS: N/A = -1</summary>
 	public System.Object Transportstreamsoverviewname {get { return GetParameter(102); }set { SetParameter(102, value); }}
-	/// <summary>PID: 103  | Type: read</summary>
+	/// <summary>PID: 103  | Type: read | EXCEPTIONS: N/A = -1</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Transportstreamsoverviewmulticast_103 {get { return GetParameter(103); }set { SetParameter(103, value); }}
-	/// <summary>PID: 103  | Type: read</summary>
+	/// <summary>PID: 103  | Type: read | EXCEPTIONS: N/A = -1</summary>
 	public System.Object Transportstreamsoverviewmulticast {get { return GetParameter(103); }set { SetParameter(103, value); }}
-	/// <summary>PID: 104  | Type: read</summary>
+	/// <summary>PID: 104  | Type: read | EXCEPTIONS: N/A = -1</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Transportstreamsoverviewnetworkid_104 {get { return GetParameter(104); }set { SetParameter(104, value); }}
-	/// <summary>PID: 104  | Type: read</summary>
+	/// <summary>PID: 104  | Type: read | EXCEPTIONS: N/A = -1</summary>
 	public System.Object Transportstreamsoverviewnetworkid {get { return GetParameter(104); }set { SetParameter(104, value); }}
 	/// <summary>PID: 105  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Transportstreamsoverviewlastpoll_105 {get { return GetParameter(105); }set { SetParameter(105, value); }}
 	/// <summary>PID: 105  | Type: read</summary>
 	public System.Object Transportstreamsoverviewlastpoll {get { return GetParameter(105); }set { SetParameter(105, value); }}
-	/// <summary>PID: 106  | Type: read</summary>
+	/// <summary>PID: 106  | Type: read | EXCEPTIONS: N/A = -1</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Transportstreamsoverviewnumberofservices_106 {get { return GetParameter(106); }set { SetParameter(106, value); }}
-	/// <summary>PID: 106  | Type: read</summary>
+	/// <summary>PID: 106  | Type: read | EXCEPTIONS: N/A = -1</summary>
 	public System.Object Transportstreamsoverviewnumberofservices {get { return GetParameter(106); }set { SetParameter(106, value); }}
-	/// <summary>PID: 201  | Type: read</summary>
+	/// <summary>PID: 201  | Type: read | EXCEPTIONS: N/A = -1</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Servicesoverviewinstance_201 {get { return GetParameter(201); }set { SetParameter(201, value); }}
-	/// <summary>PID: 201  | Type: read</summary>
+	/// <summary>PID: 201  | Type: read | EXCEPTIONS: N/A = -1</summary>
 	public System.Object Servicesoverviewinstance {get { return GetParameter(201); }set { SetParameter(201, value); }}
-	/// <summary>PID: 202  | Type: read</summary>
+	/// <summary>PID: 202  | Type: read | EXCEPTIONS: N/A = -1</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Servicesoverviewname_202 {get { return GetParameter(202); }set { SetParameter(202, value); }}
-	/// <summary>PID: 202  | Type: read</summary>
+	/// <summary>PID: 202  | Type: read | EXCEPTIONS: N/A = -1</summary>
 	public System.Object Servicesoverviewname {get { return GetParameter(202); }set { SetParameter(202, value); }}
-	/// <summary>PID: 203  | Type: read</summary>
+	/// <summary>PID: 203  | Type: read | EXCEPTIONS: N/A = -1</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Servicesoverviewtype_203 {get { return GetParameter(203); }set { SetParameter(203, value); }}
-	/// <summary>PID: 203  | Type: read</summary>
+	/// <summary>PID: 203  | Type: read | EXCEPTIONS: N/A = -1</summary>
 	public System.Object Servicesoverviewtype {get { return GetParameter(203); }set { SetParameter(203, value); }}
-	/// <summary>PID: 204  | Type: read</summary>
+	/// <summary>PID: 204  | Type: read | EXCEPTIONS: N/A = -1</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Servicesoverviewprovider_204 {get { return GetParameter(204); }set { SetParameter(204, value); }}
-	/// <summary>PID: 204  | Type: read</summary>
+	/// <summary>PID: 204  | Type: read | EXCEPTIONS: N/A = -1</summary>
 	public System.Object Servicesoverviewprovider {get { return GetParameter(204); }set { SetParameter(204, value); }}
-	/// <summary>PID: 205  | Type: read</summary>
+	/// <summary>PID: 205  | Type: read | EXCEPTIONS: N/A = -1</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Servicesoverviewtransportstreaminstance_205 {get { return GetParameter(205); }set { SetParameter(205, value); }}
-	/// <summary>PID: 205  | Type: read</summary>
+	/// <summary>PID: 205  | Type: read | EXCEPTIONS: N/A = -1</summary>
 	public System.Object Servicesoverviewtransportstreaminstance {get { return GetParameter(205); }set { SetParameter(205, value); }}
 	public WriteParameters Write { get; set; }
 	public ConcreteSLProtocolExt()

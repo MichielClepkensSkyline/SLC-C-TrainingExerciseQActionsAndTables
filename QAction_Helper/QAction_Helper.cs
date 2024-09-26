@@ -131,9 +131,9 @@ public static class Parameter
 			public const int servicesoverviewprovider = 204;
 			/// <summary>PID: 205 | Type: read</summary>
 			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int servicesoverviewtransportstreamfk_205 = 205;
+			public const int servicesoverviewtransportstreaminstance_205 = 205;
 			/// <summary>PID: 205 | Type: read</summary>
-			public const int servicesoverviewtransportstreamfk = 205;
+			public const int servicesoverviewtransportstreaminstance = 205;
 			public class Write
 			{
 			}
@@ -162,9 +162,9 @@ public static class Parameter
 			public const int servicesoverviewprovider = 3;
 			/// <summary>IDX: 4 | Type: read</summary>
 			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int servicesoverviewtransportstreamfk_205 = 4;
+			public const int servicesoverviewtransportstreaminstance_205 = 4;
 			/// <summary>IDX: 4 | Type: read</summary>
-			public const int servicesoverviewtransportstreamfk = 4;
+			public const int servicesoverviewtransportstreaminstance = 4;
 		}
 	}
 }
@@ -210,8 +210,8 @@ public interface SLProtocolExt : SLProtocol
 	object Servicesoverviewtype { get; set; }
 	object Servicesoverviewprovider_204 { get; set; }
 	object Servicesoverviewprovider { get; set; }
-	object Servicesoverviewtransportstreamfk_205 { get; set; }
-	object Servicesoverviewtransportstreamfk { get; set; }
+	object Servicesoverviewtransportstreaminstance_205 { get; set; }
+	object Servicesoverviewtransportstreaminstance { get; set; }
 	WriteParameters Write { get; set; }
 }
 public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
@@ -285,9 +285,9 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Servicesoverviewprovider {get { return GetParameter(204); }set { SetParameter(204, value); }}
 	/// <summary>PID: 205  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Servicesoverviewtransportstreamfk_205 {get { return GetParameter(205); }set { SetParameter(205, value); }}
+	public System.Object Servicesoverviewtransportstreaminstance_205 {get { return GetParameter(205); }set { SetParameter(205, value); }}
 	/// <summary>PID: 205  | Type: read</summary>
-	public System.Object Servicesoverviewtransportstreamfk {get { return GetParameter(205); }set { SetParameter(205, value); }}
+	public System.Object Servicesoverviewtransportstreaminstance {get { return GetParameter(205); }set { SetParameter(205, value); }}
 	public WriteParameters Write { get; set; }
 	public ConcreteSLProtocolExt()
 	{
@@ -347,7 +347,7 @@ public class TransportstreamsoverviewQActionRow : QActionTableRow
 	public TransportstreamsoverviewQActionRow(System.Object[] oRow) : base(0, 6, oRow) { }
 	public static implicit operator TransportstreamsoverviewQActionRow(System.Object[] source) { return new TransportstreamsoverviewQActionRow(source); }
 	public static implicit operator System.Object[](TransportstreamsoverviewQActionRow source) { return source.ToObjectArray(); }
-	public System.String[] GetChildKeysServicesoverviewServicesoverviewtransportstreamfk(SLProtocol protocol) { return (System.String[])protocol.NotifyProtocol(196, 205, Key); }
+	public System.String[] GetChildKeysServicesoverviewServicesoverviewtransportstreaminstance(SLProtocol protocol) { return (System.String[])protocol.NotifyProtocol(196, 205, Key); }
 }
 /// <summary>IDX: 0</summary>
 public class ServicesoverviewQActionRow : QActionTableRow
@@ -374,13 +374,13 @@ public class ServicesoverviewQActionRow : QActionTableRow
 	public System.Object Servicesoverviewprovider { get { if (base.Columns.ContainsKey(3)) { return base.Columns[3]; } else { return null; } } set { if (base.Columns.ContainsKey(3)) { base.Columns[3] = value; } else { base.Columns.Add(3, value); } } }
 	/// <summary>PID: 205 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Servicesoverviewtransportstreamfk_205 { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
+	public System.Object Servicesoverviewtransportstreaminstance_205 { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
 	/// <summary>PID: 205 | Type: read</summary>
-	public System.Object Servicesoverviewtransportstreamfk { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
+	public System.Object Servicesoverviewtransportstreaminstance { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
 	public ServicesoverviewQActionRow() : base(0, 5) { }
 	public ServicesoverviewQActionRow(System.Object[] oRow) : base(0, 5, oRow) { }
 	public static implicit operator ServicesoverviewQActionRow(System.Object[] source) { return new ServicesoverviewQActionRow(source); }
 	public static implicit operator System.Object[](ServicesoverviewQActionRow source) { return source.ToObjectArray(); }
-	public System.Object[] GetParentRowTransportstreamsoverviewServicesoverviewtransportstreamfk(SLProtocol protocol) { return (System.Object[])protocol.GetRow(100, (System.String)Servicesoverviewtransportstreamfk); }
+	public System.Object[] GetParentRowTransportstreamsoverviewServicesoverviewtransportstreaminstance(SLProtocol protocol) { return (System.Object[])protocol.GetRow(100, (System.String)Servicesoverviewtransportstreaminstance); }
 }
 }

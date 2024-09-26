@@ -22,6 +22,12 @@ public static class QAction
 		{
 			var polledData = PollData();
 
+			if (polledData?.TransportStreams == null)
+			{
+				protocol.Log("No transport streams found in the data.");
+				return;
+			}
+
 			UpdateTransportStreamsTable(protocol, polledData);
 
 			UpdateServicesTable(protocol, polledData);
@@ -44,38 +50,36 @@ public static class QAction
 
 	private static void UpdateTransportStreamsTable(SLProtocol protocol, TransportStreamsData polledData)
 	{
-		// Transform the polled data into rows suitable for the Transport Streams overview table
 		var rowsToAdd = polledData.TransportStreams
 			.Select(transportStream => new TransportstreamsoverviewQActionRow
 			{
 				Transportstreamsoverviewinstance_101 = Convert.ToString(transportStream.TsId),
-				Transportstreamsoverviewname_102 = transportStream.TsName.Trim(),
+				Transportstreamsoverviewname_102 = transportStream.TsName,
 				Transportstreamsoverviewmulticast_103 = transportStream.Multicast,
 				Transportstreamsoverviewnetworkid_104 = Convert.ToString(transportStream.NetworkId),
 				Transportstreamsoverviewlastpoll_105 = DateTime.Now.ToOADate(),
-				Transportstreamsoverviewnumberofservices_106 = transportStream.Services.Count,
+				Transportstreamsoverviewnumberofservices_106 = transportStream.Services != null ? transportStream.Services.Count : 0,
 			})
 			.Select(transportStreamRow => transportStreamRow.ToObjectArray())
 			.ToList();
 
 		protocol.FillArray(Parameter.Transportstreamsoverview.tablePid, rowsToAdd, NotifyProtocol.SaveOption.Full);
 
-		var numOfTransportStreamsWithNoServices = polledData.TransportStreams.Count(ts => ts.Services.Count == 0);
+		var numOfTransportStreamsWithNoServices = polledData.TransportStreams.Count(ts => ts.Services != null && ts.Services.Count == 0);
 		protocol.SetParameter(Parameter.numoftransportstreamswithnoservices, numOfTransportStreamsWithNoServices);
-		protocol.Log("Number of transport streams with zero services:" + numOfTransportStreamsWithNoServices.ToString());
 	}
 
 	private static void UpdateServicesTable(SLProtocol protocol, TransportStreamsData polledData)
 	{
-		// Transform the services from each transport stream into rows for the Services overview table
 		var rowsToAdd = polledData.TransportStreams
+			.Where(transportStream => transportStream.Services != null)
 			.SelectMany(transportStream => transportStream.Services.Select(service => new ServicesoverviewQActionRow
 			{
 				Servicesoverviewinstance_201 = Convert.ToString(service.ServiceId),
-				Servicesoverviewname_202 = service.ServiceName.Trim(),
+				Servicesoverviewname_202 = service.ServiceName,
 				Servicesoverviewtype_203 = service.ServiceType,
 				Servicesoverviewprovider_204 = service.ServiceProvider,
-				Servicesoverviewtransportstreamfk_205 = Convert.ToString(transportStream.TsId),
+				Servicesoverviewtransportstreaminstance_205 = Convert.ToString(transportStream.TsId),
 			}))
 			.Select(serviceRow => serviceRow.ToObjectArray())
 			.ToList();

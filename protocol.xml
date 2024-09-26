@@ -365,7 +365,7 @@ Any inquiries can be addressed to:
 		</Param>
 		<Param id="203" trending="false">
 			<Name>servicesOverviewType</Name>
-			<Description>Service Type (Services Overview)</Description>
+			<Description>Type (Services Overview)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>This parameter represents a type.</Subtext>
@@ -384,7 +384,7 @@ Any inquiries can be addressed to:
 		</Param>
 		<Param id="204" trending="false">
 			<Name>servicesOverviewProvider</Name>
-			<Description>Service Provider (Services Overview)</Description>
+			<Description>Provider (Services Overview)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>This represents a provider.</Subtext>
@@ -402,11 +402,11 @@ Any inquiries can be addressed to:
 			</Measurement>
 		</Param>
 		<Param id="205" trending="false">
-			<Name>servicesOverviewTransportStreamFK</Name>
-			<Description>Transport Streams Instance (Services Overview)</Description>
+			<Name>servicesOverviewTransportStreamInstance</Name>
+			<Description>Transport Stream Instance (Services Overview)</Description>
 			<Type>read</Type>
 			<Information>
-				<Subtext>This column represents Foreign Key for table Transport Streams.</Subtext>
+				<Subtext>This column represents the instance reference to the Transport Streams table.</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>other</RawType>

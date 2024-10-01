@@ -263,10 +263,10 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Transportstreamsoverviewnumberofservices_106 {get { return GetParameter(106); }set { SetParameter(106, value); }}
 	/// <summary>PID: 106  | Type: read | EXCEPTIONS: N/A = -1</summary>
 	public System.Object Transportstreamsoverviewnumberofservices {get { return GetParameter(106); }set { SetParameter(106, value); }}
-	/// <summary>PID: 201  | Type: read | EXCEPTIONS: N/A = -1</summary>
+	/// <summary>PID: 201  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Servicesoverviewinstance_201 {get { return GetParameter(201); }set { SetParameter(201, value); }}
-	/// <summary>PID: 201  | Type: read | EXCEPTIONS: N/A = -1</summary>
+	/// <summary>PID: 201  | Type: read</summary>
 	public System.Object Servicesoverviewinstance {get { return GetParameter(201); }set { SetParameter(201, value); }}
 	/// <summary>PID: 202  | Type: read | EXCEPTIONS: N/A = -1</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
@@ -283,10 +283,10 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Servicesoverviewprovider_204 {get { return GetParameter(204); }set { SetParameter(204, value); }}
 	/// <summary>PID: 204  | Type: read | EXCEPTIONS: N/A = -1</summary>
 	public System.Object Servicesoverviewprovider {get { return GetParameter(204); }set { SetParameter(204, value); }}
-	/// <summary>PID: 205  | Type: read | EXCEPTIONS: N/A = -1</summary>
+	/// <summary>PID: 205  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Servicesoverviewtransportstreaminstance_205 {get { return GetParameter(205); }set { SetParameter(205, value); }}
-	/// <summary>PID: 205  | Type: read | EXCEPTIONS: N/A = -1</summary>
+	/// <summary>PID: 205  | Type: read</summary>
 	public System.Object Servicesoverviewtransportstreaminstance {get { return GetParameter(205); }set { SetParameter(205, value); }}
 	public WriteParameters Write { get; set; }
 	public ConcreteSLProtocolExt()

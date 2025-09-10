@@ -45,22 +45,22 @@ Any inquiries can be addressed to:
 -->
 
 <Protocol xmlns="http://www.skyline.be/protocol">
-	<Name>Excercise QActions And Tables</Name>
+	<Name>Exercise QActions And Tables Sofian</Name>
 	<Description>Excercise QActions And Tables DataMiner connector</Description>
 	<Version>1.0.0.1</Version>
-	<IntegrationID>DMS-DRV-</IntegrationID>
+	<IntegrationID>DMS-DRV-99</IntegrationID>
 	<Provider>Skyline Communications</Provider>
-	<Vendor></Vendor>
-	<VendorOID>1.3.6.1.4.1.8813.2.</VendorOID>
-	<DeviceOID></DeviceOID>
-	<ElementType></ElementType>
+	<Vendor>Skyline</Vendor>
+	<VendorOID>1.3.6.1.4.1.8813.2.99</VendorOID>
+	<DeviceOID>9999</DeviceOID>
+	<ElementType>Unknown</ElementType>
 	<Type relativeTimers="true">virtual</Type>
-	<Display defaultPage="General" pageOrder="General"/>
+	<Display defaultPage="General" pageOrder="General" wideColumnPages=""/>
 	<SNMP includepages="true">auto</SNMP>
 
 	<Compliancies>
 		<CassandraReady>true</CassandraReady>
-		<MinimumRequiredVersion>10.1.0.0 - 9966</MinimumRequiredVersion>
+		<MinimumRequiredVersion>10.3.0.0 - 19966</MinimumRequiredVersion>
 	</Compliancies>
 
 	<Params>
@@ -68,6 +68,134 @@ Any inquiries can be addressed to:
 			<Name>AfterStartup</Name>
 			<Description>After Startup</Description>
 			<Type>dummy</Type>
+		</Param>
+		<Param id="1000">
+			<Name>transportstreams</Name>
+			<Description>Transportstreams</Description>
+			<Type>array</Type>
+			<ArrayOptions index="0" options=";naming=/1002">
+				<ColumnOption idx="0" pid="1001" type="retrieved" options=""/>
+				<ColumnOption idx="1" pid="1002" type="retrieved" options=""/>
+				<ColumnOption idx="2" pid="1003" type="retrieved" options=""/>
+				<ColumnOption idx="3" pid="1004" type="retrieved" options=""/>
+				<ColumnOption idx="4" pid="1005" type="retrieved" options=""/>
+			</ArrayOptions>
+			<Information>
+				<Subtext>This contains all the streams that are used for the transportation of the data of the services</Subtext>
+			</Information>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="tab=columns:1001|0-1002|1-1003|2-1004|3-1005|4,width:143-162-117-118-100,sort:STRING-STRING-STRING-STRING-INT,lines:25,filter:true">table</Type>
+			</Measurement>
+		</Param>
+		<Param id="1001" trending="false">
+			<Name>transportstreamsId</Name>
+			<Description>ID of Transportstreams</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the unique identifier for the transportstream. \nThis is the key used internally by DataMiner to identify the table entries.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
+		</Param>
+		<Param id="1002" trending="false">
+			<Name>transportstreamsName</Name>
+			<Description>Name of Transportstream</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This gives the name of the transportstream.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="1003" trending="false">
+			<Name>transportstreamsMulticast</Name>
+			<Description>Multicast Address</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the IP address from which the stream is multicasted.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="1004" trending="false">
+			<Name>transportstreamsSourceIp</Name>
+			<Description>Source IP Address</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the IP address from the source of the stream.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="1005" trending="false">
+			<Name>transportstreamsNetworkId</Name>
+			<Description>Network ID</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>The ID of the network on which the stream is.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Units>W</Units>
+				<Range>
+					<Low>0</Low>
+					<High>9999</High>
+				</Range>
+			</Display>
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
 		</Param>
 	</Params>
 
@@ -151,7 +279,7 @@ Any inquiries can be addressed to:
 									<MinorVersion id="1">
 										<Date>2024-01-09</Date>
 										<Provider>
-											<Author>XXX</Author>
+											<Author>SKF</Author>
 											<Company>Skyline Communications</Company>
 										</Provider>
 										<Changes>

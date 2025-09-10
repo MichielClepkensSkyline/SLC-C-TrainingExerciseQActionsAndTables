@@ -194,7 +194,7 @@ Any inquiries can be addressed to:
 			</Measurement>
 		</Param>
 		<Param id="1006" trending="false">
-			<Name>transportLastPollTime</Name>
+			<Name>transportStreamsLastPollTime</Name>
 			<Description>Last Poll Time(Transport Streams)</Description>
 			<Type>read</Type>
 			<Information>
@@ -337,11 +337,45 @@ Any inquiries can be addressed to:
 			</Measurement>
 		</Param>
 		
+		<Param id="4">
+			<Name>pollButton</Name>
+			<Type>write</Type>
+			<Information>
+				<Subtext>This parameter is a button used to poll data for Services and Transport Streams tables.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>3</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Poll Data</Display>
+						<Value>1</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		
 	</Params>
 
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />
+		<QAction id="3" name="Poll Data" encoding="csharp" triggers="4">
+		</QAction>
 	</QActions>
 
 	<Groups>

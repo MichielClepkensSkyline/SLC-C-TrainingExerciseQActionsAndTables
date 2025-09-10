@@ -10,6 +10,11 @@ public static class Parameter
 {
 	public class Write
 	{
+		/// <summary>PID: 4 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int pollbutton_4 = 4;
+		/// <summary>PID: 4 | Type: write</summary>
+		public const int pollbutton = 4;
 	}
 	public class Transportstreams
 	{
@@ -48,9 +53,9 @@ public static class Parameter
 			public const int transportstreamsnetworkid = 1005;
 			/// <summary>PID: 1006 | Type: read</summary>
 			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int transportlastpolltime_1006 = 1006;
+			public const int transportstreamslastpolltime_1006 = 1006;
 			/// <summary>PID: 1006 | Type: read</summary>
-			public const int transportlastpolltime = 1006;
+			public const int transportstreamslastpolltime = 1006;
 			public class Write
 			{
 			}
@@ -84,9 +89,9 @@ public static class Parameter
 			public const int transportstreamsnetworkid = 4;
 			/// <summary>IDX: 5 | Type: read</summary>
 			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int transportlastpolltime_1006 = 5;
+			public const int transportstreamslastpolltime_1006 = 5;
 			/// <summary>IDX: 5 | Type: read</summary>
-			public const int transportlastpolltime = 5;
+			public const int transportstreamslastpolltime = 5;
 		}
 	}
 	public class Services
@@ -160,6 +165,8 @@ public static class Parameter
 }
 public class WriteParameters
 {
+	/// <summary>PID: 4  | Type: write | DISCREETS: Poll Data = 1</summary>
+	public System.Object Pollbutton {get { return Protocol.GetParameter(4); }set { Protocol.SetParameter(4, value); }}
 	public SLProtocolExt Protocol;
 	public WriteParameters(SLProtocolExt protocol)
 	{
@@ -173,6 +180,8 @@ public interface SLProtocolExt : SLProtocol
 	/// <summary>PID: 2000</summary>
 	ServicesQActionTable services { get; set; }
 	object Afterstartup_dummy { get; set; }
+	object Pollbutton_4 { get; set; }
+	object Pollbutton { get; set; }
 	object Transportstreamsid_1001 { get; set; }
 	object Transportstreamsid { get; set; }
 	object Transportstreamsname_1002 { get; set; }
@@ -183,8 +192,8 @@ public interface SLProtocolExt : SLProtocol
 	object Transportstreamssourceipaddress { get; set; }
 	object Transportstreamsnetworkid_1005 { get; set; }
 	object Transportstreamsnetworkid { get; set; }
-	object Transportlastpolltime_1006 { get; set; }
-	object Transportlastpolltime { get; set; }
+	object Transportstreamslastpolltime_1006 { get; set; }
+	object Transportstreamslastpolltime { get; set; }
 	object Servicesid_2001 { get; set; }
 	object Servicesid { get; set; }
 	object Servicesname_2002 { get; set; }
@@ -205,6 +214,10 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public ServicesQActionTable services { get; set; }
 	/// <summary>PID: 2  | Type: dummy</summary>
 	public System.Object Afterstartup_dummy {get { return GetParameter(2); }set { SetParameter(2, value); }}
+	/// <summary>PID: 4  | Type: write | DISCREETS: Poll Data = 1</summary>
+	public System.Object Pollbutton_4 {get { return GetParameter(4); }set { SetParameter(4, value); }}
+	/// <summary>PID: 4  | Type: write | DISCREETS: Poll Data = 1</summary>
+	public System.Object Pollbutton {get { return Write.Pollbutton; }set { Write.Pollbutton = value; }}
 	/// <summary>PID: 1001  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Transportstreamsid_1001 {get { return GetParameter(1001); }set { SetParameter(1001, value); }}
@@ -232,9 +245,9 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Transportstreamsnetworkid {get { return GetParameter(1005); }set { SetParameter(1005, value); }}
 	/// <summary>PID: 1006  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Transportlastpolltime_1006 {get { return GetParameter(1006); }set { SetParameter(1006, value); }}
+	public System.Object Transportstreamslastpolltime_1006 {get { return GetParameter(1006); }set { SetParameter(1006, value); }}
 	/// <summary>PID: 1006  | Type: read</summary>
-	public System.Object Transportlastpolltime {get { return GetParameter(1006); }set { SetParameter(1006, value); }}
+	public System.Object Transportstreamslastpolltime {get { return GetParameter(1006); }set { SetParameter(1006, value); }}
 	/// <summary>PID: 2001  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Servicesid_2001 {get { return GetParameter(2001); }set { SetParameter(2001, value); }}
@@ -312,9 +325,9 @@ public class TransportstreamsQActionRow : QActionTableRow
 	public System.Object Transportstreamsnetworkid { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
 	/// <summary>PID: 1006 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Transportlastpolltime_1006 { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
+	public System.Object Transportstreamslastpolltime_1006 { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
 	/// <summary>PID: 1006 | Type: read</summary>
-	public System.Object Transportlastpolltime { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
+	public System.Object Transportstreamslastpolltime { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
 	public TransportstreamsQActionRow() : base(0, 6) { }
 	public TransportstreamsQActionRow(System.Object[] oRow) : base(0, 6, oRow) { }
 	public static implicit operator TransportstreamsQActionRow(System.Object[] source) { return new TransportstreamsQActionRow(source); }

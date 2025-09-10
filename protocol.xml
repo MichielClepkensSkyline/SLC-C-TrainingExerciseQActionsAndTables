@@ -69,6 +69,94 @@ Any inquiries can be addressed to:
 			<Description>After Startup</Description>
 			<Type>dummy</Type>
 		</Param>
+		<Param id="3" trending="false">
+			<Name>pollCounter</Name>
+			<Description>Poll Counter</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This counter counts every time the data is polled, there are 2 options for updating this, every minute and when clicked on the button</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+				<DefaultValue>0</DefaultValue>
+				<Range>
+					<Low>0</Low>
+					<High>9999</High>
+				</Range>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Units>Requests</Units>
+				<Range>
+					<Low>0</Low>
+					<High>9999</High>
+				</Range>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>3</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
+		</Param>
+		<Param id="4">
+			<Name>buttonPoll</Name>
+			<Type>write</Type>
+			<Information>
+				<Subtext>When clicking on this button, an immediate poll gets executed.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>4</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Poll</Display>
+						<Value>1</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="10" trending="false">
+			<Name>lastPolledTime</Name>
+			<Description>Last Time Poll</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>The datetime when the information was last polled.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+				<Decimals>8</Decimals>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Decimals>8</Decimals>
+			</Display>
+			<Measurement>
+				<Type options="datetime">number</Type>
+			</Measurement>
+		</Param>
 		<Param id="1000">
 			<Name>transportstreams</Name>
 			<Description>Transportstreams</Description>
@@ -79,6 +167,7 @@ Any inquiries can be addressed to:
 				<ColumnOption idx="2" pid="1003" type="retrieved" options=""/>
 				<ColumnOption idx="3" pid="1004" type="retrieved" options=""/>
 				<ColumnOption idx="4" pid="1005" type="retrieved" options=""/>
+				<ColumnOption idx="5" pid="10" type="retrieved" options=""/>
 			</ArrayOptions>
 			<Information>
 				<Subtext>This contains all the streams that are used for the transportation of the data of the services</Subtext>
@@ -94,7 +183,7 @@ Any inquiries can be addressed to:
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:1001|0-1002|1-1003|2-1004|3-1005|4,width:143-162-117-118-100,sort:STRING-STRING-STRING-STRING-INT,lines:25,filter:true">table</Type>
+				<Type options="tab=columns:1001|0-1002|1-1003|2-1004|3-1005|4-10|5,width:163-163-119-120-100-156,sort:STRING-STRING-STRING-STRING-INT-INT,lines:25,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="1001" trending="false">
@@ -202,10 +291,11 @@ Any inquiries can be addressed to:
 			<Description>Services</Description>
 			<Type>array</Type>
 			<ArrayOptions index="0">
-				<ColumnOption idx="0" pid="2001" type="retrieved" options=""/>
+				<ColumnOption idx="0" pid="2001" type="retrieved" options="" />
 				<ColumnOption idx="1" pid="2002" type="retrieved" options=""/>
 				<ColumnOption idx="2" pid="2003" type="retrieved" options=""/>
 				<ColumnOption idx="3" pid="2004" type="retrieved" options=""/>
+				<ColumnOption idx="4" pid="10" type="retrieved" options=""/>
 			</ArrayOptions>
 			<Information>
 				<Subtext>This table contains all the services that are relaying on a certain transportstream.</Subtext>
@@ -221,7 +311,7 @@ Any inquiries can be addressed to:
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:2001|0-2002|1-2003|2-2004|3,width:109-133-104-151,sort:STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
+				<Type options="tab=columns:2001|0-2002|1-2003|2-2004|3-10|4,width:109-133-104-151-156,sort:STRING-STRING-STRING-STRING-INT,lines:25,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="2001" trending="false">
@@ -316,6 +406,14 @@ Any inquiries can be addressed to:
 				<Action>2</Action>
 			</Content>
 		</Group>
+		<Group id="3">
+			<Name>pollCounterGroup</Name>
+			<Description>Group for updating the poll counter</Description>
+			<Type>poll action</Type>
+			<Content>
+				<Action>3</Action>
+			</Content>
+		</Group>
 	</Groups>
 
 	<Triggers>
@@ -326,6 +424,15 @@ Any inquiries can be addressed to:
 			<Type>action</Type>
 			<Content>
 				<Id>1</Id>
+			</Content>
+		</Trigger>
+		<Trigger id="4">
+			<Name>Change Poll Button</Name>
+			<On id="4">parameter</On>
+			<Time>change</Time>
+			<Type>action</Type>
+			<Content>
+				<Id>3</Id>
 			</Content>
 		</Trigger>
 	</Triggers>
@@ -340,6 +447,11 @@ Any inquiries can be addressed to:
 			<Name>After Startup QAction</Name>
 			<On id="2">parameter</On>
 			<Type>run actions</Type>
+		</Action>
+		<Action id="3">
+			<Name>Increment Poll Counter</Name>
+			<On id="3">parameter</On>
+			<Type>increment</Type>
 		</Action>
 	</Actions>
 
@@ -356,6 +468,7 @@ Any inquiries can be addressed to:
 			<Time initial="true" dataDisplay="30000">60000</Time>
 			<Interval>75</Interval>
 			<Content>
+				<Group>3</Group>
 			</Content>
 		</Timer>
 		<Timer id="3">

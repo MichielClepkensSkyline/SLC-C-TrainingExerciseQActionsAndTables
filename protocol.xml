@@ -79,6 +79,7 @@ Any inquiries can be addressed to:
 				<ColumnOption idx="2" pid="1003" type="retrieved" options=""/>
 				<ColumnOption idx="3" pid="1004" type="retrieved" options=""/>
 				<ColumnOption idx="4" pid="1005" type="retrieved" options=""/>
+				<ColumnOption idx="5" pid="1006" type="retrieved" options=""/>
 			</ArrayOptions>
 			<Information>
 				<Subtext>This table displays the data for Transport Streams, it contains columns: Id, Name, Multicast, Source IP address and Network ID.</Subtext>
@@ -94,7 +95,7 @@ Any inquiries can be addressed to:
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:1001|0-1002|1-1003|2-1004|3-1005|4,width:151-158-177-226-188,sort:STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
+				<Type options="tab=columns:1001|0-1002|1-1003|2-1004|3-1005|4-1006|5,width:151-158-177-226-188-100,sort:STRING-STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="1001" trending="false">
@@ -192,6 +193,25 @@ Any inquiries can be addressed to:
 				<Type>string</Type>
 			</Measurement>
 		</Param>
+		<Param id="1006" trending="false">
+			<Name>transportLastPollTime</Name>
+			<Description>Last Poll Time(Transport Streams)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This parameter is a column for the last poll time of the single row in Transport Streams.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
 		
 		<Param id="2000">
 			<Name>services</Name>
@@ -202,6 +222,7 @@ Any inquiries can be addressed to:
 				<ColumnOption idx="1" pid="2002" type="retrieved" options=""/>
 				<ColumnOption idx="2" pid="2003" type="retrieved" options=""/>
 				<ColumnOption idx="3" pid="2004" type="retrieved" options=""/>
+				<ColumnOption idx="4" pid="2005" type="retrieved" options=""/>
 			</ArrayOptions>
 			<Information>
 				<Subtext>This table displays the data for Services, it contains columns: Id, Name, Type and Service Provider.</Subtext>
@@ -217,7 +238,7 @@ Any inquiries can be addressed to:
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:2001|0-2002|1-2003|2-2004|3,width:100-100-100-100,sort:STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
+				<Type options="tab=columns:2001|0-2002|1-2003|2-2004|3-2005|4,width:100-100-100-100-100,sort:STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="2001" trending="false">
@@ -283,6 +304,25 @@ Any inquiries can be addressed to:
 			<Type>read</Type>
 			<Information>
 				<Subtext>This parameter is a column for the provider of the Service.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="2005" trending="false">
+			<Name>servicesLastPollTime</Name>
+			<Description>Last Poll Time (Services)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This parameter is a column for the last poll time of the single row in Service.</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>other</RawType>

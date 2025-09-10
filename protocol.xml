@@ -197,6 +197,109 @@ Any inquiries can be addressed to:
 				<Type>number</Type>
 			</Measurement>
 		</Param>
+		<Param id="2000">
+			<Name>services</Name>
+			<Description>Services</Description>
+			<Type>array</Type>
+			<ArrayOptions index="0">
+				<ColumnOption idx="0" pid="2001" type="retrieved" options=""/>
+				<ColumnOption idx="1" pid="2002" type="retrieved" options=""/>
+				<ColumnOption idx="2" pid="2003" type="retrieved" options=""/>
+				<ColumnOption idx="3" pid="2004" type="retrieved" options=""/>
+			</ArrayOptions>
+			<Information>
+				<Subtext>This table contains all the services that are relaying on a certain transportstream.</Subtext>
+			</Information>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>1</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="tab=columns:2001|0-2002|1-2003|2-2004|3,width:109-133-104-151,sort:STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
+			</Measurement>
+		</Param>
+		<Param id="2001" trending="false">
+			<Name>servicesId</Name>
+			<Description>Id of Services</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the unique identifier for the service. \nThis is the key used internally by DataMiner to identify the table entries.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="2002" trending="false">
+			<Name>servicesName</Name>
+			<Description>Name of the Service</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the name of the service.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="2003" trending="false">
+			<Name>servicesType</Name>
+			<Description>Type of Service</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is a type of service.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="2004" trending="false">
+			<Name>servicesProvider</Name>
+			<Description>Provider of the Service.</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the name of the provider of a service.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
 	</Params>
 
 	<QActions>

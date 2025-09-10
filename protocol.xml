@@ -136,27 +136,6 @@ Any inquiries can be addressed to:
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="10" trending="false">
-			<Name>lastPolledTime</Name>
-			<Description>Last Time Poll</Description>
-			<Type>read</Type>
-			<Information>
-				<Subtext>The datetime when the information was last polled.</Subtext>
-			</Information>
-			<Interprete>
-				<RawType>numeric text</RawType>
-				<Type>double</Type>
-				<LengthType>next param</LengthType>
-				<Decimals>8</Decimals>
-			</Interprete>
-			<Display>
-				<RTDisplay>true</RTDisplay>
-				<Decimals>8</Decimals>
-			</Display>
-			<Measurement>
-				<Type options="datetime">number</Type>
-			</Measurement>
-		</Param>
 		<Param id="1000">
 			<Name>transportstreams</Name>
 			<Description>Transportstreams</Description>
@@ -167,7 +146,7 @@ Any inquiries can be addressed to:
 				<ColumnOption idx="2" pid="1003" type="retrieved" options=""/>
 				<ColumnOption idx="3" pid="1004" type="retrieved" options=""/>
 				<ColumnOption idx="4" pid="1005" type="retrieved" options=""/>
-				<ColumnOption idx="5" pid="10" type="retrieved" options=""/>
+				<ColumnOption idx="5" pid="1006" type="retrieved" options=""/>
 			</ArrayOptions>
 			<Information>
 				<Subtext>This contains all the streams that are used for the transportation of the data of the services</Subtext>
@@ -183,12 +162,12 @@ Any inquiries can be addressed to:
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:1001|0-1002|1-1003|2-1004|3-1005|4-10|5,width:163-163-119-120-100-156,sort:STRING-STRING-STRING-STRING-INT-INT,lines:25,filter:true">table</Type>
+				<Type options="tab=columns:1001|0-1002|1-1003|2-1004|3-1005|4-1006|5,width:163-163-119-120-100-212,sort:STRING-STRING-STRING-STRING-INT-INT|DESC,lines:25,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="1001" trending="false">
 			<Name>transportstreamsId</Name>
-			<Description>ID of Transportstreams</Description>
+			<Description>ID (Transportstreams)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>This is the unique identifier for the transportstream. \nThis is the key used internally by DataMiner to identify the table entries.</Subtext>
@@ -207,7 +186,7 @@ Any inquiries can be addressed to:
 		</Param>
 		<Param id="1002" trending="false">
 			<Name>transportstreamsName</Name>
-			<Description>Name of Transportstream</Description>
+			<Description>Name (Transportstreams)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>This gives the name of the transportstream.</Subtext>
@@ -226,7 +205,7 @@ Any inquiries can be addressed to:
 		</Param>
 		<Param id="1003" trending="false">
 			<Name>transportstreamsMulticast</Name>
-			<Description>Multicast Address</Description>
+			<Description>Multicast Address (Transportstreams)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>This is the IP address from which the stream is multicasted.</Subtext>
@@ -245,7 +224,7 @@ Any inquiries can be addressed to:
 		</Param>
 		<Param id="1004" trending="false">
 			<Name>transportstreamsSourceIp</Name>
-			<Description>Source IP Address</Description>
+			<Description>Source IP Address (Transportstreams)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>This is the IP address from the source of the stream.</Subtext>
@@ -264,7 +243,7 @@ Any inquiries can be addressed to:
 		</Param>
 		<Param id="1005" trending="false">
 			<Name>transportstreamsNetworkId</Name>
-			<Description>Network ID</Description>
+			<Description>Network ID (Transportstreams)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>The ID of the network on which the stream is.</Subtext>
@@ -286,6 +265,27 @@ Any inquiries can be addressed to:
 				<Type>number</Type>
 			</Measurement>
 		</Param>
+		<Param id="1006" trending="false">
+			<Name>transportstreamsLastPolledTime</Name>
+			<Description>Last Time Transportstreams Polled (Transportstreams)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>The datetime when the transportstreams was last polled.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+				<Decimals>8</Decimals>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Decimals>8</Decimals>
+			</Display>
+			<Measurement>
+				<Type options="datetime">number</Type>
+			</Measurement>
+		</Param>
 		<Param id="2000">
 			<Name>services</Name>
 			<Description>Services</Description>
@@ -295,7 +295,7 @@ Any inquiries can be addressed to:
 				<ColumnOption idx="1" pid="2002" type="retrieved" options=""/>
 				<ColumnOption idx="2" pid="2003" type="retrieved" options=""/>
 				<ColumnOption idx="3" pid="2004" type="retrieved" options=""/>
-				<ColumnOption idx="4" pid="10" type="retrieved" options=""/>
+				<ColumnOption idx="4" pid="2005" type="retrieved" options=""/>
 			</ArrayOptions>
 			<Information>
 				<Subtext>This table contains all the services that are relaying on a certain transportstream.</Subtext>
@@ -311,12 +311,12 @@ Any inquiries can be addressed to:
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:2001|0-2002|1-2003|2-2004|3-10|4,width:109-133-104-151-156,sort:STRING-STRING-STRING-STRING-INT,lines:25,filter:true">table</Type>
+				<Type options="tab=columns:2001|0-2002|1-2003|2-2004|3-2005|4,width:109-133-104-151-160,sort:STRING-STRING-STRING-STRING-INT|DESC,lines:25,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="2001" trending="false">
 			<Name>servicesId</Name>
-			<Description>Id of Services</Description>
+			<Description>Id (Services)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>This is the unique identifier for the service. \nThis is the key used internally by DataMiner to identify the table entries.</Subtext>
@@ -335,7 +335,7 @@ Any inquiries can be addressed to:
 		</Param>
 		<Param id="2002" trending="false">
 			<Name>servicesName</Name>
-			<Description>Name of the Service</Description>
+			<Description>Name (Services)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>This is the name of the service.</Subtext>
@@ -354,7 +354,7 @@ Any inquiries can be addressed to:
 		</Param>
 		<Param id="2003" trending="false">
 			<Name>servicesType</Name>
-			<Description>Type of Service</Description>
+			<Description>Type (Services)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>This is a type of service.</Subtext>
@@ -373,7 +373,7 @@ Any inquiries can be addressed to:
 		</Param>
 		<Param id="2004" trending="false">
 			<Name>servicesProvider</Name>
-			<Description>Provider of the Service.</Description>
+			<Description>Provider (Services).</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>This is the name of the provider of a service.</Subtext>
@@ -388,6 +388,27 @@ Any inquiries can be addressed to:
 			</Display>
 			<Measurement>
 				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="2005" trending="false">
+			<Name>servicesLastPolledTime</Name>
+			<Description>Last Time Services Polled (Services)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>The datetime when the services was last polled.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+				<Decimals>8</Decimals>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Decimals>8</Decimals>
+			</Display>
+			<Measurement>
+				<Type options="datetime">number</Type>
 			</Measurement>
 		</Param>
 	</Params>

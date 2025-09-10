@@ -81,7 +81,7 @@ Any inquiries can be addressed to:
 				<ColumnOption idx="4" pid="1005" type="retrieved" options=""/>
 			</ArrayOptions>
 			<Information>
-				<Subtext>tableInformation</Subtext>
+				<Subtext>This table displays the data for Transport Streams, it contains columns: Id, Name, Multicast, Source IP address and Network ID.</Subtext>
 			</Information>
 			<Display>
 				<RTDisplay>true</RTDisplay>
@@ -192,6 +192,111 @@ Any inquiries can be addressed to:
 				<Type>string</Type>
 			</Measurement>
 		</Param>
+		
+		<Param id="2000">
+			<Name>services</Name>
+			<Description>Services</Description>
+			<Type>array</Type>
+			<ArrayOptions index="0">
+				<ColumnOption idx="0" pid="2001" type="retrieved" options=""/>
+				<ColumnOption idx="1" pid="2002" type="retrieved" options=""/>
+				<ColumnOption idx="2" pid="2003" type="retrieved" options=""/>
+				<ColumnOption idx="3" pid="2004" type="retrieved" options=""/>
+			</ArrayOptions>
+			<Information>
+				<Subtext>This table displays the data for Services, it contains columns: Id, Name, Type and Service Provider.</Subtext>
+			</Information>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>2</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="tab=columns:2001|0-2002|1-2003|2-2004|3,width:100-100-100-100,sort:STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
+			</Measurement>
+		</Param>
+		<Param id="2001" trending="false">
+			<Name>servicesId</Name>
+			<Description>Id (Services)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the key used internally by DataMiner to identify the table entries for Services table.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="2002" trending="false">
+			<Name>servicesName</Name>
+			<Description>Name (Services)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This parameter is a column for the name of the Service.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="2003" trending="false">
+			<Name>servicesType</Name>
+			<Description>Type (Services)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This parameter is a column for the type of the Service.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="2004" trending="false">
+			<Name>servicesProvider</Name>
+			<Description>Provider (Services)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This parameter is a column for the provider of the Service.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		
 	</Params>
 
 	<QActions>

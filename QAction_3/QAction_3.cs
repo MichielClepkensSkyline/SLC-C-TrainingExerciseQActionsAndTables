@@ -35,7 +35,6 @@ public static class QAction
 	{
 		try
 		{
-
 			List<object[]> transport_Streams = new List<object[]>();
 			List<object[]> services = new List<object[]>();
 			foreach (Transport_Stream transport_stream in deserializedTransportStreams.transport_streams)
@@ -71,6 +70,4 @@ public static class QAction
 			protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|Exception thrown:{Environment.NewLine}{ex}", LogType.Error, LogLevel.NoLogging);
 		}
 	}
-
-	
 }

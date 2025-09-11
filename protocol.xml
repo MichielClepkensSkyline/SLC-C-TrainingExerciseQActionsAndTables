@@ -73,13 +73,13 @@ Any inquiries can be addressed to:
 			<Name>transportStreams</Name>
 			<Description>Transport Streams</Description>
 			<Type>array</Type>
-			<ArrayOptions index="0">
+			<ArrayOptions index="0" options="naming=/1002">
 				<ColumnOption idx="0" pid="1001" type="retrieved" options=""/>
 				<ColumnOption idx="1" pid="1002" type="retrieved" options=""/>
-				<ColumnOption idx="2" pid="1003" type="retrieved" options=""/>
-				<ColumnOption idx="3" pid="1004" type="retrieved" options=""/>
-				<ColumnOption idx="4" pid="1005" type="retrieved" options=""/>
-				<ColumnOption idx="5" pid="1006" type="retrieved" options=""/>
+				<ColumnOption idx="2" pid="1003" type="retrieved" options=";save"/>
+				<ColumnOption idx="3" pid="1004" type="retrieved" options=";save"/>
+				<ColumnOption idx="4" pid="1005" type="retrieved" options=";save"/>
+				<ColumnOption idx="5" pid="1006" type="retrieved" options=";save"/>
 			</ArrayOptions>
 			<Information>
 				<Subtext>This table displays the data for Transport Streams, it contains columns: Id, Name, Multicast, Source IP address and Network ID.</Subtext>
@@ -217,12 +217,12 @@ Any inquiries can be addressed to:
 			<Name>services</Name>
 			<Description>Services</Description>
 			<Type>array</Type>
-			<ArrayOptions index="0">
+			<ArrayOptions index="0" options="naming=/2002">
 				<ColumnOption idx="0" pid="2001" type="retrieved" options=""/>
 				<ColumnOption idx="1" pid="2002" type="retrieved" options=""/>
-				<ColumnOption idx="2" pid="2003" type="retrieved" options=""/>
-				<ColumnOption idx="3" pid="2004" type="retrieved" options=""/>
-				<ColumnOption idx="4" pid="2005" type="retrieved" options=""/>
+				<ColumnOption idx="2" pid="2003" type="retrieved" options=";save"/>
+				<ColumnOption idx="3" pid="2004" type="retrieved" options=";save"/>
+				<ColumnOption idx="4" pid="2005" type="retrieved" options=";save"/>
 			</ArrayOptions>
 			<Information>
 				<Subtext>This table displays the data for Services, it contains columns: Id, Name, Type and Service Provider.</Subtext>
@@ -368,6 +368,7 @@ Any inquiries can be addressed to:
 				</Discreets>
 			</Measurement>
 		</Param>
+
 		
 	</Params>
 
@@ -385,6 +386,14 @@ Any inquiries can be addressed to:
 			<Type>poll action</Type>
 			<Content>
 				<Action>2</Action>
+			</Content>
+		</Group>
+
+		<Group id="3">
+			<Name>Poll Data</Name>
+			<Description>Poll Data</Description>
+			<Type>poll action</Type>
+			<Content>
 			</Content>
 		</Group>
 	</Groups>
@@ -427,6 +436,7 @@ Any inquiries can be addressed to:
 			<Time initial="true" dataDisplay="30000">60000</Time>
 			<Interval>75</Interval>
 			<Content>
+				<Group>3</Group>
 			</Content>
 		</Timer>
 		<Timer id="3">

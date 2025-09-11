@@ -444,7 +444,7 @@ Any inquiries can be addressed to:
 		</Timer>
 		<Timer id="2">
 			<Name>Medium Timer (1m)</Name>
-			<Time initial="true" dataDisplay="30000">60000</Time>
+			<Time initial="true">60000</Time>
 			<Interval>75</Interval>
 			<Content>
 				<Group>3</Group>

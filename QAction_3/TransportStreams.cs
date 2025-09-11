@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-
-using static Skyline.DataMiner.Scripting.Parameter;
-
-namespace QAction_3
+﻿namespace QAction_3
 {
+	using System.Collections.Generic;
+	using System.Text.Json.Serialization;
+
 	public class TransportStreams
 	{
 		[JsonPropertyName("transport_streams")]

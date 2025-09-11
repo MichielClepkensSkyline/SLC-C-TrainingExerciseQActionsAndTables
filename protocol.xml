@@ -369,13 +369,18 @@ Any inquiries can be addressed to:
 			</Measurement>
 		</Param>
 
+		<Param id="5">
+			<Name>Poll Data</Name>
+			<Description>Poll Data</Description>
+			<Type>dummy</Type>
+		</Param>
 		
 	</Params>
 
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />
-		<QAction id="3" name="Poll Data" encoding="csharp" triggers="4">
+		<QAction id="3" name="Poll Data" encoding="csharp" triggers="4;5">
 		</QAction>
 	</QActions>
 
@@ -394,6 +399,7 @@ Any inquiries can be addressed to:
 			<Description>Poll Data</Description>
 			<Type>poll action</Type>
 			<Content>
+				<Action>3</Action>
 			</Content>
 		</Group>
 	</Groups>
@@ -419,6 +425,11 @@ Any inquiries can be addressed to:
 		<Action id="2">
 			<Name>After Startup QAction</Name>
 			<On id="2">parameter</On>
+			<Type>run actions</Type>
+		</Action>
+		<Action id="3">
+			<Name>Fake Parameter Change Event</Name>
+			<On id="5">parameter</On>
 			<Type>run actions</Type>
 		</Action>
 	</Actions>

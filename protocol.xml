@@ -370,7 +370,7 @@ Any inquiries can be addressed to:
 		</Param>
 
 		<Param id="5">
-			<Name>Poll Data</Name>
+			<Name>PollData</Name>
 			<Description>Poll Data</Description>
 			<Type>dummy</Type>
 		</Param>

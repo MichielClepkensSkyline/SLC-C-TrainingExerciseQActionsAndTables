@@ -182,7 +182,7 @@ public interface SLProtocolExt : SLProtocol
 	object Afterstartup_dummy { get; set; }
 	object Pollbutton_4 { get; set; }
 	object Pollbutton { get; set; }
-	object PollData_dummy { get; set; }
+	object Polldata_dummy { get; set; }
 	object Transportstreamsid_1001 { get; set; }
 	object Transportstreamsid { get; set; }
 	object Transportstreamsname_1002 { get; set; }
@@ -220,7 +220,7 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	/// <summary>PID: 4  | Type: write | DISCREETS: Poll Data = 1</summary>
 	public System.Object Pollbutton {get { return Write.Pollbutton; }set { Write.Pollbutton = value; }}
 	/// <summary>PID: 5  | Type: dummy</summary>
-	public System.Object PollData_dummy {get { return GetParameter(5); }set { SetParameter(5, value); }}
+	public System.Object Polldata_dummy {get { return GetParameter(5); }set { SetParameter(5, value); }}
 	/// <summary>PID: 1001  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Transportstreamsid_1001 {get { return GetParameter(1001); }set { SetParameter(1001, value); }}

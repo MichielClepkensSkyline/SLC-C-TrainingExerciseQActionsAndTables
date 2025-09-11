@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
-
-using Newtonsoft.Json;
-
+using System.IO;
 using QAction_3;
 using Skyline.DataMiner.Scripting;
+using Skyline.DataMiner.Utils.SecureCoding.SecureIO;
+using Skyline.DataMiner.Utils.SecureCoding.SecureSerialization.Json.Newtonsoft;
 
 /// <summary>
 /// DataMiner QAction Class: Poll Data.
@@ -21,8 +19,10 @@ public static class QAction
 	{
 		try
 		{
-			string source = "{\"transport_streams\":[{\"ts_id\":1,\"ts_name\":\"RTLHD\",\"multicast\":\"232.101.1.1\",\"sourceIp\":\"10.15.1.1\",\"network_id\":1,\"services\":[{\"service_id\":52006,\"service_name\":\"Service1\",\"service_type\":\"digital_television\",\"service_provider\":\"ProviderA\"},{\"service_id\":52007,\"service_name\":\"Service2\",\"service_type\":\"digital_television\",\"service_provider\":\"ProviderA\"}]},{\"ts_id\":2,\"ts_name\":\"DasErsteSD\",\"multicast\":\"232.101.1.2\",\"sourceIp\":\"10.15.1.2\",\"network_id\":1,\"services\":[{\"service_id\":101,\"service_name\":\"Service3\",\"service_type\":\"digital_television\",\"service_provider\":\"ProviderB\"},{\"service_id\":102,\"service_name\":\"Service4\",\"service_type\":\"digital_radio\",\"service_provider\":\"ProviderB\"}]},{\"ts_id\":3,\"ts_name\":\"ComedyCentralHD\",\"multicast\":\"232.101.1.3\",\"sourceIp\":\"10.15.1.3\",\"network_id\":2,\"services\":[{\"service_id\":2003,\"service_name\":\"Service5\",\"service_type\":\"digital_television\",\"service_provider\":\"ProviderC\"},{\"service_id\":2004,\"service_name\":\"Service6\",\"service_type\":\"digital_radio\",\"service_provider\":\"ProviderC\"}]}]}";
-			TransportStreams deserializedTransportStreams = JsonConvert.DeserializeObject<TransportStreams>(source);
+			string dataFilePath = @"C:\\Skyline DataMiner\\Documents\\SLC-C-TrainingExerciseQActionsAndTables\\Data.json";
+			var json = File.ReadAllText(SecurePath.ConstructSecurePath(dataFilePath));
+			string jsonData = Convert.ToString(json);
+			TransportStreams deserializedTransportStreams = SecureNewtonsoftDeserialization.DeserializeObject<TransportStreams>(jsonData);
 			FillTables(protocol, deserializedTransportStreams);
 		}
 		catch (Exception ex)
@@ -35,11 +35,11 @@ public static class QAction
 	{
 		try
 		{
-			List<object[]> transport_Streams = new List<object[]>();
-			List<object[]> services = new List<object[]>();
+			List<object[]> transportStreamsTableContent = new List<object[]>();
+			List<object[]> servicesTableContent = new List<object[]>();
 			foreach (Transport_Stream transport_stream in deserializedTransportStreams.transport_streams)
 			{
-				transport_Streams.Add(new TransportstreamsQActionRow
+				transportStreamsTableContent.Add(new TransportstreamsQActionRow
 				{
 					Transportstreamsid_1001 = transport_stream.ts_id,
 					Transportstreamsname_1002 = transport_stream.ts_name,
@@ -51,7 +51,7 @@ public static class QAction
 
 				foreach (Service service in transport_stream.services)
 				{
-					services.Add(new ServicesQActionRow
+					servicesTableContent.Add(new ServicesQActionRow
 					{
 						Servicesid_2001 = service.service_id,
 						Servicesname_2002 = service.service_name,
@@ -62,8 +62,8 @@ public static class QAction
 				}
 			}
 
-			protocol.FillArray(Parameter.Transportstreams.tablePid, transport_Streams, NotifyProtocol.SaveOption.Full);
-			protocol.FillArray(Parameter.Services.tablePid, services, NotifyProtocol.SaveOption.Full);
+			protocol.FillArray(Parameter.Transportstreams.tablePid, transportStreamsTableContent, NotifyProtocol.SaveOption.Full);
+			protocol.FillArray(Parameter.Services.tablePid, servicesTableContent, NotifyProtocol.SaveOption.Full);
 		}
 		catch (Exception ex)
 		{

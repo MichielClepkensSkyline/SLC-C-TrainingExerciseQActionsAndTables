@@ -1,44 +1,64 @@
-using Newtonsoft.Json;
-using Skyline.DataMiner.Scripting;
-using Skyline.DataMiner.Utils.Protocol.Extension;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Newtonsoft.Json;
+using Skyline.DataMiner.Scripting;
+using Skyline.DataMiner.Utils.Protocol.Extension;
+using Skyline.DataMiner.Utils.SecureCoding;
+using Skyline.DataMiner.Utils.SecureCoding.SecureIO;
+using Skyline.DataMiner.Utils.SecureCoding.SecureSerialization.Json.Newtonsoft;
 using static Skyline.DataMiner.Scripting.Parameter;
-
-
-
 
 /// <summary>
 /// DataMiner QAction Class.
 /// </summary>
 public static class QAction
 {
-    public class Service
-	{
-        public string service_id { get; set; }
-        public string service_name { get; set; }
-        public string service_type { get; set; }
-        public string service_provider { get; set; }
-    }
-
-	public class Transportstream
-	{
-        public string ts_id;
-        public string ts_name { get; set; }
-        public string multicast { get; set; }
-        public string sourceIp { get; set; }
-        public int network_id { get; set; }
-        public List<Service> services { get; set; }
-    }
-
-    public class JsonStructure
+    public class Root
     {
-        public List<Transportstream> transport_streams { get; set; }
+        [JsonProperty("transport_streams")]
+        public List<TransportStream> TransportStreams;
     }
+
+    public class Service
+    {
+        [JsonProperty("service_id")]
+        public string ServiceId;
+
+        [JsonProperty("service_name")]
+        public string ServiceName;
+
+        [JsonProperty("service_type")]
+        public string ServiceType;
+
+        [JsonProperty("service_provider")]
+        public string ServiceProvider;
+    }
+
+    public class TransportStream
+    {
+        [JsonProperty("ts_id")]
+        public string TransportStreamId;
+
+        [JsonProperty("ts_name")]
+        public string TransportStreamName;
+
+        [JsonProperty("multicast")]
+        public string Multicast;
+
+        [JsonProperty("sourceIp")]
+        public string SourceIp;
+
+        [JsonProperty("network_id")]
+        public int? NetworkId;
+
+        [JsonProperty("services")]
+        public List<Service> Services;
+    }
+
     /// <summary>
     /// The QAction entry point.
     /// </summary>
@@ -49,19 +69,23 @@ public static class QAction
 		try
 		{
             string fileName = "C:\\Skyline DataMiner\\Documents\\SLC-C-TrainingExerciseQActionsAndTables\\Data.json";
-            string jsonString = File.ReadAllText(fileName);
-            JsonStructure json = JsonConvert.DeserializeObject<JsonStructure>(jsonString);
-            // protocol.Log("JSON file read");
+            SecurePath secureFullPath = SecurePath.CreateSecurePath(fileName);
 
-            foreach (Transportstream ts in json.transport_streams)
+            string jsonString = File.ReadAllText(secureFullPath);
+            Root json = SecureNewtonsoftDeserialization.DeserializeObject<Root>(jsonString);
+
+            //Root json = JsonConvert.DeserializeObject<Root>(jsonString);
+            //protocol.Log("JSON file read");
+
+            foreach (TransportStream transportStream in json.TransportStreams)
             {
                 TransportstreamsQActionRow transportstreamRow = new TransportstreamsQActionRow
                 {
-                    Transportstreamsid = ts.ts_id,
-                    Transportstreamsname = ts.ts_name, //wat zijn exact deze namen?
-                    Transportstreamsmulticast = ts.multicast,
-                    Transportstreamssourceip = ts.sourceIp,
-                    Transportstreamsnetworkid = ts.network_id,
+                    Transportstreamsid = transportStream.TransportStreamId,
+                    Transportstreamsname = transportStream.TransportStreamName,
+                    Transportstreamsmulticast = transportStream.Multicast,
+                    Transportstreamssourceip = transportStream.SourceIp,
+                    Transportstreamsnetworkid = transportStream.NetworkId,
                     Transportstreamslastpolledtime = DateTime.Now.ToOADate(),
                 };
                 // This method checks automatically if the row exists, in case not a new one is created
@@ -83,14 +107,14 @@ public static class QAction
                 protocol.AddRow(Parameter.Transportstreams.tablePid, transportstreamRow.ToObjectArray());
                 */
 
-                foreach (Service service in ts.services)
+                foreach (Service service in transportStream.Services)
                 {
                     ServicesQActionRow serviceRow = new ServicesQActionRow
                     {
-                        Servicesid = service.service_id,
-                        Servicesname = service.service_name,
-                        Servicestype = service.service_type,
-                        Servicesprovider = service.service_provider,
+                        Servicesid = service.ServiceId,
+                        Servicesname = service.ServiceName,
+                        Servicestype = service.ServiceType,
+                        Servicesprovider = service.ServiceProvider,
                         Serviceslastpolledtime = DateTime.Now.ToOADate(),
                     };
                     protocol.services.SetRow(serviceRow, true);

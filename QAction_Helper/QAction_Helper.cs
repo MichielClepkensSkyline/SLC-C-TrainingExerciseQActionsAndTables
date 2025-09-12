@@ -139,6 +139,11 @@ public static class Parameter
 			public const int servicestransportstreamidfk_2006 = 2006;
 			/// <summary>PID: 2006 | Type: read</summary>
 			public const int servicestransportstreamidfk = 2006;
+			/// <summary>PID: 2007 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int servicestransportstreamname_2007 = 2007;
+			/// <summary>PID: 2007 | Type: read</summary>
+			public const int servicestransportstreamname = 2007;
 			public class Write
 			{
 			}
@@ -175,6 +180,11 @@ public static class Parameter
 			public const int servicestransportstreamidfk_2006 = 5;
 			/// <summary>IDX: 5 | Type: read</summary>
 			public const int servicestransportstreamidfk = 5;
+			/// <summary>IDX: 6 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int servicestransportstreamname_2007 = 6;
+			/// <summary>IDX: 6 | Type: read</summary>
+			public const int servicestransportstreamname = 6;
 		}
 	}
 }
@@ -223,6 +233,8 @@ public interface SLProtocolExt : SLProtocol
 	object Serviceslastpolledtime { get; set; }
 	object Servicestransportstreamidfk_2006 { get; set; }
 	object Servicestransportstreamidfk { get; set; }
+	object Servicestransportstreamname_2007 { get; set; }
+	object Servicestransportstreamname { get; set; }
 	WriteParameters Write { get; set; }
 }
 public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
@@ -302,6 +314,11 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Servicestransportstreamidfk_2006 {get { return GetParameter(2006); }set { SetParameter(2006, value); }}
 	/// <summary>PID: 2006  | Type: read</summary>
 	public System.Object Servicestransportstreamidfk {get { return GetParameter(2006); }set { SetParameter(2006, value); }}
+	/// <summary>PID: 2007  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Servicestransportstreamname_2007 {get { return GetParameter(2007); }set { SetParameter(2007, value); }}
+	/// <summary>PID: 2007  | Type: read</summary>
+	public System.Object Servicestransportstreamname {get { return GetParameter(2007); }set { SetParameter(2007, value); }}
 	public WriteParameters Write { get; set; }
 	public ConcreteSLProtocolExt()
 	{
@@ -396,8 +413,13 @@ public class ServicesQActionRow : QActionTableRow
 	public System.Object Servicestransportstreamidfk_2006 { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
 	/// <summary>PID: 2006 | Type: read</summary>
 	public System.Object Servicestransportstreamidfk { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
-	public ServicesQActionRow() : base(0, 6) { }
-	public ServicesQActionRow(System.Object[] oRow) : base(0, 6, oRow) { }
+	/// <summary>PID: 2007 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Servicestransportstreamname_2007 { get { if (base.Columns.ContainsKey(6)) { return base.Columns[6]; } else { return null; } } set { if (base.Columns.ContainsKey(6)) { base.Columns[6] = value; } else { base.Columns.Add(6, value); } } }
+	/// <summary>PID: 2007 | Type: read</summary>
+	public System.Object Servicestransportstreamname { get { if (base.Columns.ContainsKey(6)) { return base.Columns[6]; } else { return null; } } set { if (base.Columns.ContainsKey(6)) { base.Columns[6] = value; } else { base.Columns.Add(6, value); } } }
+	public ServicesQActionRow() : base(0, 7) { }
+	public ServicesQActionRow(System.Object[] oRow) : base(0, 7, oRow) { }
 	public static implicit operator ServicesQActionRow(System.Object[] source) { return new ServicesQActionRow(source); }
 	public static implicit operator System.Object[](ServicesQActionRow source) { return source.ToObjectArray(); }
 	public System.Object[] GetParentRowTransportstreamsServicestransportstreamidfk(SLProtocol protocol) { return (System.Object[])protocol.GetRow(1000, (System.String)Servicestransportstreamidfk); }

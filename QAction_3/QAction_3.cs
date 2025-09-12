@@ -20,7 +20,7 @@ public static class QAction
     public class Root
     {
         [JsonProperty("transport_streams")]
-        public List<TransportStream> TransportStreams;
+        public List<Transportstream> Transportstreams;
     }
 
     public class Service
@@ -38,13 +38,13 @@ public static class QAction
         public string ServiceProvider;
     }
 
-    public class TransportStream
+    public class Transportstream
     {
         [JsonProperty("ts_id")]
-        public string TransportStreamId;
+        public string TransportstreamId;
 
         [JsonProperty("ts_name")]
-        public string TransportStreamName;
+        public string TransportstreamName;
 
         [JsonProperty("multicast")]
         public string Multicast;
@@ -65,6 +65,9 @@ public static class QAction
     /// <param name="protocol">Link with SLProtocol process.</param>
     public static void Run(SLProtocolExt protocol)
 	{
+        string variabel = protocol.GetType().Name;
+        protocol.Log(protocol.GetType().FullName);
+        protocol.Log($"QA{protocol.QActionID}|Run|{variabel}", LogType.Information, LogLevel.NoLogging);
 		bool useProtocolExtended = false;
 		try
 		{
@@ -77,15 +80,15 @@ public static class QAction
             //Root json = JsonConvert.DeserializeObject<Root>(jsonString);
             //protocol.Log("JSON file read");
 
-            foreach (TransportStream transportStream in json.TransportStreams)
+            foreach (Transportstream transportstream in json.Transportstreams)
             {
                 TransportstreamsQActionRow transportstreamRow = new TransportstreamsQActionRow
                 {
-                    Transportstreamsid = transportStream.TransportStreamId,
-                    Transportstreamsname = transportStream.TransportStreamName,
-                    Transportstreamsmulticast = transportStream.Multicast,
-                    Transportstreamssourceip = transportStream.SourceIp,
-                    Transportstreamsnetworkid = transportStream.NetworkId,
+                    Transportstreamsid = transportstream.TransportstreamId,
+                    Transportstreamsname = transportstream.TransportstreamName,
+                    Transportstreamsmulticast = transportstream.Multicast,
+                    Transportstreamssourceip = transportstream.SourceIp,
+                    Transportstreamsnetworkid = transportstream.NetworkId,
                     Transportstreamslastpolledtime = DateTime.Now.ToOADate(),
                 };
                 // This method checks automatically if the row exists, in case not a new one is created
@@ -107,7 +110,7 @@ public static class QAction
                 protocol.AddRow(Parameter.Transportstreams.tablePid, transportstreamRow.ToObjectArray());
                 */
 
-                foreach (Service service in transportStream.Services)
+                foreach (Service service in transportstream.Services)
                 {
                     ServicesQActionRow serviceRow = new ServicesQActionRow
                     {
@@ -116,7 +119,8 @@ public static class QAction
                         Servicestype = service.ServiceType,
                         Servicesprovider = service.ServiceProvider,
                         Serviceslastpolledtime = DateTime.Now.ToOADate(),
-                        Servicestransportstreamidfk = transportStream.TransportStreamId,
+                        Servicestransportstreamidfk = transportstream.TransportstreamId,
+                        Servicestransportstreamname = transportstream.TransportstreamName,
                     };
                     protocol.services.SetRow(serviceRow, true);
                     //protocol.Log("Service added or updated");

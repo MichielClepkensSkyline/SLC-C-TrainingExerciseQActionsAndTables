@@ -5,7 +5,6 @@ using QAction_3;
 using Skyline.DataMiner.Scripting;
 using Skyline.DataMiner.Utils.SecureCoding.SecureIO;
 using Skyline.DataMiner.Utils.SecureCoding.SecureSerialization.Json.Newtonsoft;
-
 /// <summary>
 /// DataMiner QAction Class: Poll Data.
 /// </summary>
@@ -20,7 +19,20 @@ public static class QAction
 		try
 		{
 			string dataFilePath = @"C:\\Skyline DataMiner\\Documents\\SLC-C-TrainingExerciseQActionsAndTables\\Data.json";
-			var json = File.ReadAllText(SecurePath.ConstructSecurePath(dataFilePath));
+
+			if (!File.Exists(dataFilePath))
+			{
+				protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|: JSON file not found at path {dataFilePath}", LogType.Error, LogLevel.NoLogging);
+				return;
+			}
+
+			if (!dataFilePath.IsPathValid())
+			{
+				protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run| File path is not valid:{dataFilePath}", LogType.Error, LogLevel.NoLogging);
+				return;
+			}
+
+			var json = File.ReadAllText(dataFilePath);
 			string jsonData = Convert.ToString(json);
 			TransportStreams deserializedTransportStreams = SecureNewtonsoftDeserialization.DeserializeObject<TransportStreams>(jsonData);
 			FillTables(protocol, deserializedTransportStreams);
@@ -58,6 +70,7 @@ public static class QAction
 						Servicestype_2003 = service.service_type,
 						Servicesprovider_2004 = service.service_provider,
 						Serviceslastpolltime_2005 = DateTime.Now,
+						Servicestransportstreamid_2006 = transport_stream.ts_id.ToString(),
 					}.ToObjectArray());
 				}
 			}

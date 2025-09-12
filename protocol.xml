@@ -69,6 +69,42 @@ Any inquiries can be addressed to:
 			<Description>After Startup</Description>
 			<Type>dummy</Type>
 		</Param>
+		<Param id="3">
+			<Name>pollButton</Name>
+			<Type>write</Type>
+			<Information>
+				<Subtext>This parameter is a button used to poll data for Services and Transport Streams tables.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>3</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Poll Data</Display>
+						<Value>1</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="4">
+			<Name>PollData</Name>
+			<Description>Poll Data</Description>
+			<Type>dummy</Type>
+		</Param>
 		<Param id="1000">
 			<Name>transportStreams</Name>
 			<Description>Transport Streams</Description>
@@ -223,6 +259,7 @@ Any inquiries can be addressed to:
 				<ColumnOption idx="2" pid="2003" type="retrieved" options=";save"/>
 				<ColumnOption idx="3" pid="2004" type="retrieved" options=";save"/>
 				<ColumnOption idx="4" pid="2005" type="retrieved" options=";save"/>
+				<ColumnOption idx="5" pid="2006" type="retrieved" options=";foreignKey=1000"/>
 			</ArrayOptions>
 			<Information>
 				<Subtext>This table displays the data for Services, it contains columns: Id, Name, Type and Service Provider.</Subtext>
@@ -238,7 +275,7 @@ Any inquiries can be addressed to:
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:2001|0-2002|1-2003|2-2004|3-2005|4,width:100-158-120-120-188,sort:STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
+				<Type options="tab=columns:2001|0-2002|1-2003|2-2004|3-2005|4-2006|5,width:100-158-120-120-188-146,sort:STRING-STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="2001" trending="false">
@@ -336,51 +373,34 @@ Any inquiries can be addressed to:
 				<Type>string</Type>
 			</Measurement>
 		</Param>
-		
-		<Param id="4">
-			<Name>pollButton</Name>
-			<Type>write</Type>
+		<Param id="2006" trending="false">
+			<Name>servicesTransportStreamId</Name>
+			<Description>Transport Stream Id (Services)</Description>
+			<Type>read</Type>
 			<Information>
-				<Subtext>This parameter is a button used to poll data for Services and Transport Streams tables.</Subtext>
+				<Subtext>This parameter displays the Transport Stream Id to which the Service belongs to.</Subtext>
 			</Information>
 			<Interprete>
-				<RawType>numeric text</RawType>
-				<Type>double</Type>
+				<RawType>other</RawType>
+				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
-				<Positions>
-					<Position>
-						<Page>General</Page>
-						<Column>0</Column>
-						<Row>3</Row>
-					</Position>
-				</Positions>
 			</Display>
 			<Measurement>
-				<Type width="110">button</Type>
-				<Discreets>
-					<Discreet>
-						<Display>Poll Data</Display>
-						<Value>1</Value>
-					</Discreet>
-				</Discreets>
+				<Type>string</Type>
 			</Measurement>
 		</Param>
-
-		<Param id="5">
-			<Name>PollData</Name>
-			<Description>Poll Data</Description>
-			<Type>dummy</Type>
-		</Param>
-		
 	</Params>
+	<Relations>
+		<Relation path="1000;2000" />
+	</Relations>
 
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />
-		<QAction id="3" name="Poll Data" encoding="csharp" triggers="4;5">
+		<QAction id="3" name="Poll Data" encoding="csharp" triggers="3;4">
 		</QAction>
 	</QActions>
 
@@ -393,7 +413,6 @@ Any inquiries can be addressed to:
 				<Action>2</Action>
 			</Content>
 		</Group>
-
 		<Group id="3">
 			<Name>Poll Data</Name>
 			<Description>Poll Data</Description>
@@ -429,7 +448,7 @@ Any inquiries can be addressed to:
 		</Action>
 		<Action id="3">
 			<Name>Fake Parameter Change Event</Name>
-			<On id="5">parameter</On>
+			<On id="4">parameter</On>
 			<Type>run actions</Type>
 		</Action>
 	</Actions>
@@ -474,7 +493,7 @@ Any inquiries can be addressed to:
 									<MinorVersion id="1">
 										<Date>2024-01-09</Date>
 										<Provider>
-											<Author>XXX</Author>
+											<Author>TSA</Author>
 											<Company>Skyline Communications</Company>
 										</Provider>
 										<Changes>

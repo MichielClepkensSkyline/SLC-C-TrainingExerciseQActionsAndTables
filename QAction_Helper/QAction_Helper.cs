@@ -10,11 +10,11 @@ public static class Parameter
 {
 	public class Write
 	{
-		/// <summary>PID: 4 | Type: write</summary>
+		/// <summary>PID: 3 | Type: write</summary>
 		[EditorBrowsable(EditorBrowsableState.Never)]
-		public const int pollbutton_4 = 4;
-		/// <summary>PID: 4 | Type: write</summary>
-		public const int pollbutton = 4;
+		public const int pollbutton_3 = 3;
+		/// <summary>PID: 3 | Type: write</summary>
+		public const int pollbutton = 3;
 	}
 	public class Transportstreams
 	{
@@ -129,6 +129,11 @@ public static class Parameter
 			public const int serviceslastpolltime_2005 = 2005;
 			/// <summary>PID: 2005 | Type: read</summary>
 			public const int serviceslastpolltime = 2005;
+			/// <summary>PID: 2006 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int servicestransportstreamid_2006 = 2006;
+			/// <summary>PID: 2006 | Type: read</summary>
+			public const int servicestransportstreamid = 2006;
 			public class Write
 			{
 			}
@@ -160,13 +165,18 @@ public static class Parameter
 			public const int serviceslastpolltime_2005 = 4;
 			/// <summary>IDX: 4 | Type: read</summary>
 			public const int serviceslastpolltime = 4;
+			/// <summary>IDX: 5 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int servicestransportstreamid_2006 = 5;
+			/// <summary>IDX: 5 | Type: read</summary>
+			public const int servicestransportstreamid = 5;
 		}
 	}
 }
 public class WriteParameters
 {
-	/// <summary>PID: 4  | Type: write | DISCREETS: Poll Data = 1</summary>
-	public System.Object Pollbutton {get { return Protocol.GetParameter(4); }set { Protocol.SetParameter(4, value); }}
+	/// <summary>PID: 3  | Type: write | DISCREETS: Poll Data = 1</summary>
+	public System.Object Pollbutton {get { return Protocol.GetParameter(3); }set { Protocol.SetParameter(3, value); }}
 	public SLProtocolExt Protocol;
 	public WriteParameters(SLProtocolExt protocol)
 	{
@@ -180,7 +190,7 @@ public interface SLProtocolExt : SLProtocol
 	/// <summary>PID: 2000</summary>
 	ServicesQActionTable services { get; set; }
 	object Afterstartup_dummy { get; set; }
-	object Pollbutton_4 { get; set; }
+	object Pollbutton_3 { get; set; }
 	object Pollbutton { get; set; }
 	object Polldata_dummy { get; set; }
 	object Transportstreamsid_1001 { get; set; }
@@ -205,6 +215,8 @@ public interface SLProtocolExt : SLProtocol
 	object Servicesprovider { get; set; }
 	object Serviceslastpolltime_2005 { get; set; }
 	object Serviceslastpolltime { get; set; }
+	object Servicestransportstreamid_2006 { get; set; }
+	object Servicestransportstreamid { get; set; }
 	WriteParameters Write { get; set; }
 }
 public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
@@ -215,12 +227,12 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public ServicesQActionTable services { get; set; }
 	/// <summary>PID: 2  | Type: dummy</summary>
 	public System.Object Afterstartup_dummy {get { return GetParameter(2); }set { SetParameter(2, value); }}
-	/// <summary>PID: 4  | Type: write | DISCREETS: Poll Data = 1</summary>
-	public System.Object Pollbutton_4 {get { return GetParameter(4); }set { SetParameter(4, value); }}
-	/// <summary>PID: 4  | Type: write | DISCREETS: Poll Data = 1</summary>
+	/// <summary>PID: 3  | Type: write | DISCREETS: Poll Data = 1</summary>
+	public System.Object Pollbutton_3 {get { return GetParameter(3); }set { SetParameter(3, value); }}
+	/// <summary>PID: 3  | Type: write | DISCREETS: Poll Data = 1</summary>
 	public System.Object Pollbutton {get { return Write.Pollbutton; }set { Write.Pollbutton = value; }}
-	/// <summary>PID: 5  | Type: dummy</summary>
-	public System.Object Polldata_dummy {get { return GetParameter(5); }set { SetParameter(5, value); }}
+	/// <summary>PID: 4  | Type: dummy</summary>
+	public System.Object Polldata_dummy {get { return GetParameter(4); }set { SetParameter(4, value); }}
 	/// <summary>PID: 1001  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Transportstreamsid_1001 {get { return GetParameter(1001); }set { SetParameter(1001, value); }}
@@ -276,6 +288,11 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Serviceslastpolltime_2005 {get { return GetParameter(2005); }set { SetParameter(2005, value); }}
 	/// <summary>PID: 2005  | Type: read</summary>
 	public System.Object Serviceslastpolltime {get { return GetParameter(2005); }set { SetParameter(2005, value); }}
+	/// <summary>PID: 2006  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Servicestransportstreamid_2006 {get { return GetParameter(2006); }set { SetParameter(2006, value); }}
+	/// <summary>PID: 2006  | Type: read</summary>
+	public System.Object Servicestransportstreamid {get { return GetParameter(2006); }set { SetParameter(2006, value); }}
 	public WriteParameters Write { get; set; }
 	public ConcreteSLProtocolExt()
 	{
@@ -335,6 +352,7 @@ public class TransportstreamsQActionRow : QActionTableRow
 	public TransportstreamsQActionRow(System.Object[] oRow) : base(0, 6, oRow) { }
 	public static implicit operator TransportstreamsQActionRow(System.Object[] source) { return new TransportstreamsQActionRow(source); }
 	public static implicit operator System.Object[](TransportstreamsQActionRow source) { return source.ToObjectArray(); }
+	public System.String[] GetChildKeysServicesServicestransportstreamid(SLProtocol protocol) { return (System.String[])protocol.NotifyProtocol(196, 2006, Key); }
 }
 /// <summary>IDX: 0</summary>
 public class ServicesQActionRow : QActionTableRow
@@ -364,9 +382,15 @@ public class ServicesQActionRow : QActionTableRow
 	public System.Object Serviceslastpolltime_2005 { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
 	/// <summary>PID: 2005 | Type: read</summary>
 	public System.Object Serviceslastpolltime { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
-	public ServicesQActionRow() : base(0, 5) { }
-	public ServicesQActionRow(System.Object[] oRow) : base(0, 5, oRow) { }
+	/// <summary>PID: 2006 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Servicestransportstreamid_2006 { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
+	/// <summary>PID: 2006 | Type: read</summary>
+	public System.Object Servicestransportstreamid { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
+	public ServicesQActionRow() : base(0, 6) { }
+	public ServicesQActionRow(System.Object[] oRow) : base(0, 6, oRow) { }
 	public static implicit operator ServicesQActionRow(System.Object[] source) { return new ServicesQActionRow(source); }
 	public static implicit operator System.Object[](ServicesQActionRow source) { return source.ToObjectArray(); }
+	public System.Object[] GetParentRowTransportstreamsServicestransportstreamid(SLProtocol protocol) { return (System.Object[])protocol.GetRow(1000, (System.String)Servicestransportstreamid); }
 }
 }

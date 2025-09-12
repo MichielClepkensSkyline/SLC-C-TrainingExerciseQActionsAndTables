@@ -65,10 +65,6 @@ public static class QAction
     /// <param name="protocol">Link with SLProtocol process.</param>
     public static void Run(SLProtocolExt protocol)
 	{
-        string variabel = protocol.GetType().Name;
-        protocol.Log(protocol.GetType().FullName);
-        protocol.Log($"QA{protocol.QActionID}|Run|{variabel}", LogType.Information, LogLevel.NoLogging);
-		bool useProtocolExtended = false;
 		try
 		{
             string fileName = "C:\\Skyline DataMiner\\Documents\\SLC-C-TrainingExerciseQActionsAndTables\\Data.json";
@@ -77,7 +73,6 @@ public static class QAction
             string jsonString = File.ReadAllText(secureFullPath);
             Root json = SecureNewtonsoftDeserialization.DeserializeObject<Root>(jsonString);
 
-            //Root json = JsonConvert.DeserializeObject<Root>(jsonString);
             //protocol.Log("JSON file read");
 
             foreach (Transportstream transportstream in json.Transportstreams)

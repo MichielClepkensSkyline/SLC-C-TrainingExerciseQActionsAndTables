@@ -296,6 +296,7 @@ Any inquiries can be addressed to:
 				<ColumnOption idx="2" pid="2003" type="retrieved" options=""/>
 				<ColumnOption idx="3" pid="2004" type="retrieved" options=""/>
 				<ColumnOption idx="4" pid="2005" type="retrieved" options=""/>
+				<ColumnOption idx="5" pid="2006" type="retrieved" value="" options=";foreignKey=1000"/>
 			</ArrayOptions>
 			<Information>
 				<Subtext>This table contains all the services that are relaying on a certain transportstream.</Subtext>
@@ -311,7 +312,7 @@ Any inquiries can be addressed to:
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:2001|0-2002|1-2003|2-2004|3-2005|4,width:109-133-104-151-160,sort:STRING|ASC|1-STRING-STRING-STRING-INT|DESC|0,lines:25,filter:true">table</Type>
+				<Type options="tab=columns:2001|0-2002|1-2003|2-2004|3-2005|4-2006|5,width:109-133-104-151-160-161,sort:STRING|ASC|1-STRING-STRING-STRING-INT|DESC|0-STRING,lines:25,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="2001" trending="false">
@@ -411,7 +412,30 @@ Any inquiries can be addressed to:
 				<Type options="datetime">number</Type>
 			</Measurement>
 		</Param>
+		<Param id="2006" trending="false">
+			<Name>servicesTransportstreamIdFK</Name>
+			<Description>Id of Transport Stream (Services)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the Id of the linked Transport Stream</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
+		</Param>
 	</Params>
+
+	<Relations>
+		<Relation path="1000;2000" />
+	</Relations>
 
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />

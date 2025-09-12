@@ -116,6 +116,7 @@ public static class QAction
                         Servicestype = service.ServiceType,
                         Servicesprovider = service.ServiceProvider,
                         Serviceslastpolledtime = DateTime.Now.ToOADate(),
+                        Servicestransportstreamidfk = transportStream.TransportStreamId,
                     };
                     protocol.services.SetRow(serviceRow, true);
                     //protocol.Log("Service added or updated");

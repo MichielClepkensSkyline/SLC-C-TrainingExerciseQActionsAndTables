@@ -58,7 +58,7 @@ public static class QAction
 					Transportstreamsmulticast_1003 = transport_stream.multicast,
 					Transportstreamssourceipaddress_1004 = transport_stream.sourceIp,
 					Transportstreamsnetworkid_1005 = transport_stream.network_id,
-					Transportstreamslastpolltime_1006 = DateTime.Now,
+					Transportstreamslastpolltime_1006 = DateTime.Now.ToOADate(),
 				}.ToObjectArray());
 
 				foreach (Service service in transport_stream.services)
@@ -69,7 +69,7 @@ public static class QAction
 						Servicesname_2002 = service.service_name,
 						Servicestype_2003 = service.service_type,
 						Servicesprovider_2004 = service.service_provider,
-						Serviceslastpolltime_2005 = DateTime.Now,
+						Serviceslastpolltime_2005 = DateTime.Now.ToOADate(),
 						Servicestransportstreamid_2006 = transport_stream.ts_id.ToString(),
 					}.ToObjectArray());
 				}

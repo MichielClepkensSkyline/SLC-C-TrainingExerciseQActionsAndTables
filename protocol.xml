@@ -131,7 +131,7 @@ Any inquiries can be addressed to:
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:1001|0-1002|1-1003|2-1004|3-1005|4-1006|5,width:100-158-120-120-100-188,sort:STRING-STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
+				<Type options="tab=columns:1001|0-1002|1-1003|2-1004|3-1005|4-1006|5,width:100-158-120-120-100-188,sort:STRING-STRING-STRING-STRING-STRING-STRING|DESC,lines:25,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="1001" trending="false">
@@ -237,18 +237,19 @@ Any inquiries can be addressed to:
 				<Subtext>This parameter is a column for the last poll time of the single row in Transport Streams.</Subtext>
 			</Information>
 			<Interprete>
-				<RawType>other</RawType>
-				<Type>string</Type>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
 				<LengthType>next param</LengthType>
+				<Decimals>8</Decimals>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
+				<Decimals>8</Decimals>
 			</Display>
 			<Measurement>
-				<Type>string</Type>
+				<Type options="datetime">number</Type>
 			</Measurement>
 		</Param>
-		
 		<Param id="2000">
 			<Name>services</Name>
 			<Description>Services</Description>
@@ -275,7 +276,7 @@ Any inquiries can be addressed to:
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:2001|0-2002|1-2003|2-2004|3-2005|4-2006|5,width:100-158-120-120-188-146,sort:STRING-STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
+				<Type options="tab=columns:2001|0-2002|1-2003|2-2004|3-2005|4-2006|5,width:100-158-120-120-188-146,sort:STRING-STRING-STRING-STRING-STRING|DESC-STRING,lines:25,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="2001" trending="false">
@@ -362,15 +363,17 @@ Any inquiries can be addressed to:
 				<Subtext>This parameter is a column for the last poll time of the single row in Service.</Subtext>
 			</Information>
 			<Interprete>
-				<RawType>other</RawType>
-				<Type>string</Type>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
 				<LengthType>next param</LengthType>
+				<Decimals>8</Decimals>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
+				<Decimals>8</Decimals>
 			</Display>
 			<Measurement>
-				<Type>string</Type>
+				<Type options="datetime">number</Type>
 			</Measurement>
 		</Param>
 		<Param id="2006" trending="false">

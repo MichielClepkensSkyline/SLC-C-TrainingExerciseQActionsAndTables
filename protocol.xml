@@ -62,7 +62,7 @@ Any inquiries can be addressed to:
 		<CassandraReady>true</CassandraReady>
 		<MinimumRequiredVersion>10.1.0.0 - 9966</MinimumRequiredVersion>
 	</Compliancies>
-
+	
 	<Params>
 		<Param id="2">
 			<Name>AfterStartup</Name>
@@ -77,20 +77,30 @@ Any inquiries can be addressed to:
 				<ColumnOption idx="0" pid="101" type="retrieved" options=""/>
 				<ColumnOption idx="1" pid="102" type="retrieved" options="" />
 				<ColumnOption idx="2" pid="103" type="retrieved" options="" />
+				<ColumnOption idx="3" pid="104" type="retrieved" options="" />
+				<ColumnOption idx="4" pid="105" type="retrieved" options="" />
+				<ColumnOption idx="5" pid="106" type="retrieved" options="" />
 			</ArrayOptions>
 			<Information>
 				<Subtext>This table shows the data of the transport streams</Subtext>
 			</Information>
 			<Display>
 				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:101|0-102|1-103|2,width:100-100-100,sort:STRING-STRING-INT,lines:25,filter:true">table</Type>
+				<Type options="tab=columns:101|0-102|1-103|2-104|3-105|4-106|5,width:146-153-100-100-100-198,sort:STRING-STRING-INT-STRING-INT-INT|DESC|0,lines:25,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="101" trending="false">
 			<Name>TransportStreamsId</Name>
-			<Description>Id</Description>
+			<Description>Transport Stream Id</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>This is the key used internally by DataMiner to identify the table entries.</Subtext>
@@ -109,9 +119,10 @@ Any inquiries can be addressed to:
 		</Param>
 		<Param id="102" trending="false">
 			<Name>TransportStreamsName</Name>
-			<Description>Name</Description>
+			<Description>Transport Stream Name</Description>
 			<Type>read</Type>
 			<Information>
+				<Subtext>This is the name of the Transport Stream</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>text</RawType>
@@ -130,6 +141,7 @@ Any inquiries can be addressed to:
 			<Description>Multicast</Description>
 			<Type>read</Type>
 			<Information>
+				<Subtext>This is the multicast value</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>text</RawType>
@@ -148,7 +160,7 @@ Any inquiries can be addressed to:
 			<Description>Source IP</Description>
 			<Type>read</Type>
 			<Information>
-				<Subtext></Subtext>
+				<Subtext>This is the Transport Streams Source IP</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>text</RawType>
@@ -167,30 +179,83 @@ Any inquiries can be addressed to:
 			<Description>Network Id</Description>
 			<Type>read</Type>
 			<Information>
-				<Subtext></Subtext>
+				<Subtext>This is the Transport Streams Network Id</Subtext>
 			</Information>
 			<Interprete>
-				<RawType>numeric text</RawType>
-				<Type>double</Type>
+				<RawType>text</RawType>
+				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
 			<Measurement>
-				<Type>number</Type>
+				<Type>string</Type>
 			</Measurement>
 		</Param>
 		<Param id="106" trending="false">
 			<Name>TransportStreamsLastPollTime</Name>
-			<Description>Last Poll Time</Description>
+			<Description>Last Transport Stream Poll Time</Description>
 			<Type>read</Type>
 			<Information>
-				<Subtext></Subtext>
+				<Subtext>This is the last recorded Poll time of the transport stream</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>numeric text</RawType>
 				<Type>double</Type>
+				<LengthType>next param</LengthType>
+				<Decimals>8</Decimals>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Decimals>8</Decimals>
+			</Display>
+			<Measurement>
+				<Type options="datetime">number</Type>
+			</Measurement>
+		</Param>
+		
+		<Param id="110" trending="true">
+			<Name>Services</Name>
+			<Description>Services</Description>
+			<Type>array</Type>
+			<ArrayOptions index="0">
+				<ColumnOption idx="0" pid="111" type="retrieved" options="" />
+				<ColumnOption idx="1" pid="112" type="retrieved" options="" />
+				<ColumnOption idx="2" pid="113" type="retrieved" options="" />
+				<ColumnOption idx="3" pid="114" type="retrieved" options="" />
+				<ColumnOption idx="4" pid="115" type="retrieved" options=";foreignKey=100" />
+				<ColumnOption idx="5" pid="116" type="retrieved" options="" />
+			</ArrayOptions>
+			<Information>
+				<Subtext>
+					<![CDATA[Services]]>
+				</Subtext>
+			</Information>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>1</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="tab=columns:111|0-112|1-113|2-114|3-115|4-116|5,width:100-100-100-111-154-156,sort:INT-STRING-STRING-STRING-INT-INT|ASC|0,lines:20,filter:true">table</Type>
+			</Measurement>
+		</Param>
+		<Param id="111" trending="false">
+			<Name>ServicesId</Name>
+			<Description>Service Id</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the Id of the service</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>text</RawType>
+				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
 			<Display>
@@ -200,9 +265,106 @@ Any inquiries can be addressed to:
 				<Type>number</Type>
 			</Measurement>
 		</Param>
-		
+		<Param id="112" trending="false">
+			<Name>ServicesName</Name>
+			<Description>Service Name</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>THis is the name of the service</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>text</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="113" trending="false">
+			<Name>ServicesType</Name>
+			<Description>Service Type</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the type of the service</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>text</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="114" trending="false">
+			<Name>ServicesProvider</Name>
+			<Description>Service Provider</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the provider of the service</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>text</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="115" trending="false">
+			<Name>ServicesTransprtStreamId</Name>
+			<Description>Transport Streams Id</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the Id of the transport stream related to the service</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>text</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="116" trending="false">
+			<Name>ServicesLastPollTime</Name>
+			<Description>Last Service Poll Time</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the last recorded poll time of the service</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+				<Decimals>8</Decimals>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Decimals>8</Decimals>
+			</Display>
+			<Measurement>
+				<Type options="datetime">number</Type>
+			</Measurement>
+		</Param>
 	</Params>
-
+	
+	
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />

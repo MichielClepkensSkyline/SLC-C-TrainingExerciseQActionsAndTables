@@ -13,6 +13,11 @@ public static class Parameter
 	public const int pollcounter_3 = 3;
 	/// <summary>PID: 3 | Type: read</summary>
 	public const int pollcounter = 3;
+	/// <summary>PID: 3000 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public const int combinedtable_3000 = 3000;
+	/// <summary>PID: 3000 | Type: read</summary>
+	public const int combinedtable = 3000;
 	public class Write
 	{
 		/// <summary>PID: 4 | Type: write</summary>
@@ -235,6 +240,8 @@ public interface SLProtocolExt : SLProtocol
 	object Servicestransportstreamidfk { get; set; }
 	object Servicestransportstreamname_2007 { get; set; }
 	object Servicestransportstreamname { get; set; }
+	object Combinedtable_3000 { get; set; }
+	object Combinedtable { get; set; }
 	WriteParameters Write { get; set; }
 }
 public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
@@ -319,6 +326,11 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Servicestransportstreamname_2007 {get { return GetParameter(2007); }set { SetParameter(2007, value); }}
 	/// <summary>PID: 2007  | Type: read</summary>
 	public System.Object Servicestransportstreamname {get { return GetParameter(2007); }set { SetParameter(2007, value); }}
+	/// <summary>PID: 3000  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Combinedtable_3000 {get { return GetParameter(3000); }set { SetParameter(3000, value); }}
+	/// <summary>PID: 3000  | Type: read</summary>
+	public System.Object Combinedtable {get { return GetParameter(3000); }set { SetParameter(3000, value); }}
 	public WriteParameters Write { get; set; }
 	public ConcreteSLProtocolExt()
 	{

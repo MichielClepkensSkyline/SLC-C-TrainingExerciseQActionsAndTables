@@ -55,7 +55,7 @@ Any inquiries can be addressed to:
 	<DeviceOID>9999</DeviceOID>
 	<ElementType>Unknown</ElementType>
 	<Type relativeTimers="true">virtual</Type>
-	<Display defaultPage="General" pageOrder="General" wideColumnPages=""/>
+	<Display defaultPage="General" pageOrder="General;Combined" wideColumnPages=""/>
 	<SNMP includepages="true">auto</SNMP>
 
 	<Compliancies>
@@ -451,11 +451,47 @@ Any inquiries can be addressed to:
 				<Type>string</Type>
 			</Measurement>
 		</Param>
+		
+		<Param id="3000" trending="false">
+			<Name>combinedTable</Name>
+			<Description>Tables Combined</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This table is the combination of the tables</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Combined</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
 	</Params>
 
 	<Relations>
 		<Relation path="1000;2000" />
 	</Relations>
+
+	<TreeControls>
+		<TreeControl parameterId="3000">
+			<Hierarchy>
+				<Table id="1000"/>
+				<Table id="2000" parent="1000"/>
+			</Hierarchy>
+		</TreeControl>
+	</TreeControls>
 
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />

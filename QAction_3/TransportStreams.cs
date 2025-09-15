@@ -6,43 +6,43 @@
 	public class TransportStreams
 	{
 		[JsonPropertyName("transport_streams")]
-		public List<Transport_Stream> transport_streams { get; set; }
+		public List<Transport_Stream> Transport_streams { get; set; }
 	}
 
 	public class Transport_Stream
 	{
 		[JsonPropertyName("ts_id")]
-		public int ts_id { get; set; }
+		public int Ts_id { get; set; }
 
 		[JsonPropertyName("ts_name")]
-		public string ts_name { get; set; }
+		public string Ts_name { get; set; }
 
 		[JsonPropertyName("multicast")]
-		public string multicast { get; set; }
+		public string Multicast { get; set; }
 
 		[JsonPropertyName("sourceIp")]
-		public string sourceIp { get; set; }
+		public string SourceIp { get; set; }
 
 		[JsonPropertyName("network_id")]
-		public int network_id { get; set; }
+		public int Network_id { get; set; }
 
 		[JsonPropertyName("services")]
-		public List<Service> services { get; set; }
+		public List<Service> Services { get; set; }
 	}
 
 	public class Service
 	{
 		[JsonPropertyName("service_id")] 
-		public int service_id { get; set; }
+		public int Service_id { get; set; }
 
 		[JsonPropertyName("service_name")]
-		public string service_name { get; set; }
+		public string Service_name { get; set; }
 
 		[JsonPropertyName("service_type")]
-		public string service_type { get; set; }
+		public string Service_type { get; set; }
 
 		[JsonPropertyName("service_provider")]
-		public string service_provider { get; set; }
+		public string Service_provider { get; set; }
 	}
 
 }

@@ -5,6 +5,7 @@ using QAction_3;
 using Skyline.DataMiner.Scripting;
 using Skyline.DataMiner.Utils.SecureCoding.SecureIO;
 using Skyline.DataMiner.Utils.SecureCoding.SecureSerialization.Json.Newtonsoft;
+
 /// <summary>
 /// DataMiner QAction Class: Poll Data.
 /// </summary>
@@ -19,10 +20,11 @@ public static class QAction
 		try
 		{
 			string dataFilePath = @"C:\\Skyline DataMiner\\Documents\\SLC-C-TrainingExerciseQActionsAndTables\\Data.json";
+			SecurePath securePath = SecurePath.CreateSecurePath(@"C:\\Skyline DataMiner\\Documents\\SLC-C-TrainingExerciseQActionsAndTables\\Data.json");
 
-			if (!File.Exists(dataFilePath))
+			if (!File.Exists(securePath))
 			{
-				protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|: JSON file not found at path {dataFilePath}", LogType.Error, LogLevel.NoLogging);
+				protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|: JSON file not found at path {securePath}", LogType.Error, LogLevel.NoLogging);
 				return;
 			}
 
@@ -32,7 +34,7 @@ public static class QAction
 				return;
 			}
 
-			var json = File.ReadAllText(dataFilePath);
+			var json = File.ReadAllText(securePath);
 			string jsonData = Convert.ToString(json);
 			TransportStreams deserializedTransportStreams = SecureNewtonsoftDeserialization.DeserializeObject<TransportStreams>(jsonData);
 			FillTables(protocol, deserializedTransportStreams);
@@ -49,28 +51,28 @@ public static class QAction
 		{
 			List<object[]> transportStreamsTableContent = new List<object[]>();
 			List<object[]> servicesTableContent = new List<object[]>();
-			foreach (Transport_Stream transport_stream in deserializedTransportStreams.transport_streams)
+			foreach (Transport_Stream transport_stream in deserializedTransportStreams.Transport_streams)
 			{
 				transportStreamsTableContent.Add(new TransportstreamsQActionRow
 				{
-					Transportstreamsid_1001 = transport_stream.ts_id,
-					Transportstreamsname_1002 = transport_stream.ts_name,
-					Transportstreamsmulticast_1003 = transport_stream.multicast,
-					Transportstreamssourceipaddress_1004 = transport_stream.sourceIp,
-					Transportstreamsnetworkid_1005 = transport_stream.network_id,
+					Transportstreamsid_1001 = transport_stream.Ts_id.ToString(),
+					Transportstreamsname_1002 = transport_stream.Ts_name,
+					Transportstreamsmulticast_1003 = transport_stream.Multicast,
+					Transportstreamssourceipaddress_1004 = transport_stream.SourceIp,
+					Transportstreamsnetworkid_1005 = transport_stream.Network_id,
 					Transportstreamslastpolltime_1006 = DateTime.Now.ToOADate(),
 				}.ToObjectArray());
 
-				foreach (Service service in transport_stream.services)
+				foreach (Service service in transport_stream.Services)
 				{
 					servicesTableContent.Add(new ServicesQActionRow
 					{
-						Servicesid_2001 = service.service_id,
-						Servicesname_2002 = service.service_name,
-						Servicestype_2003 = service.service_type,
-						Servicesprovider_2004 = service.service_provider,
+						Servicesid_2001 = service.Service_id.ToString(),
+						Servicesname_2002 = service.Service_name,
+						Servicestype_2003 = service.Service_type,
+						Servicesprovider_2004 = service.Service_provider,
 						Serviceslastpolltime_2005 = DateTime.Now.ToOADate(),
-						Servicestransportstreamid_2006 = transport_stream.ts_id.ToString(),
+						Servicestransportstreamid_2006 = transport_stream.Ts_id.ToString(),
 					}.ToObjectArray());
 				}
 			}

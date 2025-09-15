@@ -1,19 +1,17 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-namespace QAction_3
+﻿namespace QAction_3
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Newtonsoft.Json;
+
     public class TransportStreams
     {
         [JsonProperty("transport_streams")]
         public List<TransportStream> TransportStreamsList { get; set; }
     }
-
 
     public class TransportStream
     {

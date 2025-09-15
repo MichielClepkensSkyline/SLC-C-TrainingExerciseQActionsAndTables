@@ -1,13 +1,13 @@
-using Newtonsoft.Json;
-using QAction_3;
-using Skyline.DataMiner.Scripting;
-using Skyline.DataMiner.Utils.SecureCoding.SecureIO;
-using Skyline.DataMiner.Utils.SecureCoding.SecureSerialization.Json.Newtonsoft;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using Newtonsoft.Json;
+using QAction_3;
+using Skyline.DataMiner.Scripting;
+using Skyline.DataMiner.Utils.SecureCoding.SecureIO;
+using Skyline.DataMiner.Utils.SecureCoding.SecureSerialization.Json.Newtonsoft;
 using static Skyline.DataMiner.Scripting.Parameter;
 
 /// <summary>
@@ -21,23 +21,19 @@ public static class QAction
     /// <param name="protocol">Link with SLProtocol process.</param>
     public static void Run(SLProtocolExt protocol)
     {
-
         try
         {
             string datapath = @"C:\\Skyline DataMiner\\Documents\\SLC-C-TrainingExerciseQActionsAndTables\\Data.json";
 
-
-            if (datapath.IsPathValid())
-            {
-                var data = File.ReadAllText(datapath);
-                string dataFromJSON = Convert.ToString(data);
-                TransportStreams deserializedTransportStreamsData = SecureNewtonsoftDeserialization.DeserializeObject<TransportStreams>(dataFromJSON);
-                FillTables(protocol, deserializedTransportStreamsData);
-            }
-            else
+            if (!datapath.IsPathValid())
             {
                 protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|File path is not valid {datapath}", LogType.Error, LogLevel.NoLogging);
             }
+
+            var data = File.ReadAllText(datapath);
+            string dataFromJSON = Convert.ToString(data);
+            TransportStreams deserializedTransportStreamsData = SecureNewtonsoftDeserialization.DeserializeObject<TransportStreams>(dataFromJSON);
+            FillTables(protocol, deserializedTransportStreamsData);
         }
         catch (Exception ex)
         {

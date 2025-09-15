@@ -10,6 +10,7 @@ namespace QAction_3
 {
     public class TransportStreams
     {
+        [JsonProperty("transport_streams")]
         public List<TransportStream> TransportStreamsList { get; set; }
     }
 

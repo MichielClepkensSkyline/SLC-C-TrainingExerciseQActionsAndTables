@@ -45,7 +45,7 @@ Any inquiries can be addressed to:
 -->
 
 <Protocol xmlns="http://www.skyline.be/protocol">
-	<Name>Excercise QActions And Tables</Name>
+	<Name>Excercise QActions And Tables Emir</Name>
 	<Description>Excercise QActions And Tables DataMiner connector</Description>
 	<Version>1.0.0.1</Version>
 	<IntegrationID>DMS-DRV-0000</IntegrationID>
@@ -67,6 +67,11 @@ Any inquiries can be addressed to:
 		<Param id="2">
 			<Name>AfterStartup</Name>
 			<Description>After Startup</Description>
+			<Type>dummy</Type>
+		</Param>
+		<Param id="3">
+			<Name>PollData</Name>
+			<Description>Poll Data</Description>
 			<Type>dummy</Type>
 		</Param>
 		<Param id="100">
@@ -323,7 +328,7 @@ Any inquiries can be addressed to:
 			</Measurement>
 		</Param>
 		<Param id="115" trending="false">
-			<Name>ServicesTransprtStreamId</Name>
+			<Name>ServicesTransportStreamId</Name>
 			<Description>Transport Streams Id</Description>
 			<Type>read</Type>
 			<Information>
@@ -368,7 +373,7 @@ Any inquiries can be addressed to:
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />
-		<QAction id="3" name="Parse Data Into Tables" encoding="csharp" triggers="2">
+		<QAction id="3" name="Parse Data Into Tables" encoding="csharp" triggers="3">
 		</QAction>
 	</QActions>
 

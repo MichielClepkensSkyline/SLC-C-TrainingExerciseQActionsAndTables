@@ -69,34 +69,16 @@ Any inquiries can be addressed to:
 			<Description>After Startup</Description>
 			<Type>dummy</Type>
 		</Param>
-		<Param id="3" trending="false">
+		<Param id="3">
 			<Name>pollCounter</Name>
 			<Description>Poll Counter</Description>
 			<Type>read</Type>
-			<Information>
-				<Subtext>This counter counts every time the data is polled, there are 2 options for updating this, every minute and when clicked on the button</Subtext>
-			</Information>
 			<Interprete>
 				<RawType>numeric text</RawType>
 				<Type>double</Type>
 				<LengthType>next param</LengthType>
 				<DefaultValue>0</DefaultValue>
-				<Range>
-					<Low>0</Low>
-					<High>9999</High>
-				</Range>
 			</Interprete>
-			<Display>
-				<RTDisplay>true</RTDisplay>
-				<Units>Requests</Units>
-				<Range>
-					<Low>0</Low>
-					<High>9999</High>
-				</Range>
-			</Display>
-			<Measurement>
-				<Type>number</Type>
-			</Measurement>
 		</Param>
 		<Param id="4">
 			<Name>buttonPoll</Name>
@@ -242,25 +224,20 @@ Any inquiries can be addressed to:
 				<Subtext>The ID of the network on which the stream is.</Subtext>
 			</Information>
 			<Interprete>
-				<RawType>numeric text</RawType>
-				<Type>double</Type>
+				<RawType>other</RawType>
+				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
-				<Units>W</Units>
-				<Range>
-					<Low>0</Low>
-					<High>9999</High>
-				</Range>
 			</Display>
 			<Measurement>
-				<Type>number</Type>
+				<Type>string</Type>
 			</Measurement>
 		</Param>
 		<Param id="1006" trending="false">
 			<Name>transportstreamsLastPolledTime</Name>
-			<Description>Last Time Transportstreams Polled (Transportstreams)</Description>
+			<Description>Last Time Polled (Transportstreams)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>The datetime when the transportstreams was last polled.</Subtext>
@@ -387,7 +364,7 @@ Any inquiries can be addressed to:
 		</Param>
 		<Param id="2005" trending="false">
 			<Name>servicesLastPolledTime</Name>
-			<Description>Last Time Services Polled (Services)</Description>
+			<Description>Last Time Polled (Services)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>The datetime when the services was last polled.</Subtext>
@@ -560,7 +537,7 @@ Any inquiries can be addressed to:
 		</Timer>
 		<Timer id="2">
 			<Name>Medium Timer (1m)</Name>
-			<Time initial="true" dataDisplay="30000">60000</Time>
+			<Time initial="true">60000</Time>
 			<Interval>75</Interval>
 			<Content>
 				<Group>3</Group>

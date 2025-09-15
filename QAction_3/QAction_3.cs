@@ -53,7 +53,7 @@ public static class QAction
         public string SourceIp;
 
         [JsonProperty("network_id")]
-        public int? NetworkId;
+        public string NetworkId;
 
         [JsonProperty("services")]
         public List<Service> Services;

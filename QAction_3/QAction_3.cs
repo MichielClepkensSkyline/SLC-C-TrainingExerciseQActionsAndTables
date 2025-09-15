@@ -36,7 +36,7 @@ public static class QAction
             }
             else
             {
-                protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|File path is not valid ${datapath}", LogType.Error, LogLevel.NoLogging);
+                protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|File path is not valid {datapath}", LogType.Error, LogLevel.NoLogging);
             }
         }
         catch (Exception ex)

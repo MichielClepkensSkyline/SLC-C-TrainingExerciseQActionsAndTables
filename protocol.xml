@@ -55,7 +55,7 @@ Any inquiries can be addressed to:
 	<DeviceOID>000</DeviceOID>
 	<ElementType>Unknown</ElementType>
 	<Type relativeTimers="true">virtual</Type>
-	<Display defaultPage="General" pageOrder="General" wideColumnPages=""/>
+	<Display defaultPage="General" pageOrder="General" wideColumnPages="General"/>
 	<SNMP includepages="true">auto</SNMP>
 
 	<Compliancies>
@@ -73,6 +73,38 @@ Any inquiries can be addressed to:
 			<Name>PollData</Name>
 			<Description>Poll Data</Description>
 			<Type>dummy</Type>
+		</Param>
+		
+		<Param id="4">
+			<Name>ForcePollData</Name>
+			<Type>write</Type>
+			<Information>
+				<Subtext>This is the parameter used for force polling the data</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>3</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Get Data</Display>
+						<Value>1</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
 		</Param>
 		<Param id="100">
 			<Name>TransportStreams</Name>
@@ -95,7 +127,7 @@ Any inquiries can be addressed to:
 					<Position>
 						<Page>General</Page>
 						<Column>0</Column>
-						<Row>0</Row>
+						<Row>1</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -229,7 +261,7 @@ Any inquiries can be addressed to:
 				<ColumnOption idx="1" pid="112" type="retrieved" options="" />
 				<ColumnOption idx="2" pid="113" type="retrieved" options="" />
 				<ColumnOption idx="3" pid="114" type="retrieved" options="" />
-				<ColumnOption idx="4" pid="115" type="retrieved" options=";foreignKey=100" />
+				<ColumnOption idx="4" pid="115" type="retrieved" options="" />
 				<ColumnOption idx="5" pid="116" type="retrieved" options="" />
 			</ArrayOptions>
 			<Information>
@@ -242,13 +274,13 @@ Any inquiries can be addressed to:
 				<Positions>
 					<Position>
 						<Page>General</Page>
-						<Column>1</Column>
-						<Row>0</Row>
+						<Column>0</Column>
+						<Row>2</Row>
 					</Position>
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:111|0-112|1-113|2-114|3-115|4-116|5,width:100-100-100-111-154-156,sort:INT-STRING-STRING-STRING-INT-INT|ASC|0,lines:20,filter:true">table</Type>
+				<Type options="tab=columns:111|0-112|1-113|2-114|3-115|4-116|5,width:100-100-100-111-154-156,sort:INT-STRING-STRING-STRING-INT-INT|DESC|0,lines:20,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="111" trending="false">
@@ -267,7 +299,7 @@ Any inquiries can be addressed to:
 				<RTDisplay>true</RTDisplay>
 			</Display>
 			<Measurement>
-				<Type>number</Type>
+				<Type>string</Type>
 			</Measurement>
 		</Param>
 		<Param id="112" trending="false">
@@ -373,7 +405,7 @@ Any inquiries can be addressed to:
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />
-		<QAction id="3" name="Parse Data Into Tables" encoding="csharp" triggers="3">
+		<QAction id="3" name="Parse Data Into Tables" encoding="csharp" triggers="4">
 		</QAction>
 	</QActions>
 

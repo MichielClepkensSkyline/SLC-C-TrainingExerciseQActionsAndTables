@@ -19,12 +19,12 @@ public static class QAction
     /// The QAction entry point.
     /// </summary>
     /// <param name="protocol">Link with SLProtocol process.</param>
-    public static void Run(SLProtocol protocol)
+    public static void Run(SLProtocolExt protocol)
     {
 
         try
         {
-            string datapath = "C:\\Skyline DataMiner\\Documents\\SLC-C-TrainingExerciseQActionsAndTables\\Data.json";
+            string datapath = @"C:\\Skyline DataMiner\\Documents\\SLC-C-TrainingExerciseQActionsAndTables\\Data.json";
 
             var data = File.ReadAllText(datapath);
             string dataFromJSON = Convert.ToString(data);
@@ -37,33 +37,33 @@ public static class QAction
         }
     }
 
-    public static void FillTables(SLProtocol protocol, TransportStreams transportStreams)
+    public static void FillTables(SLProtocolExt protocol, TransportStreams transportStreams)
     {
         foreach (TransportStream transportStream in transportStreams.TransportStreamsList)
         {
             var newTransportStreamRow = new TransportstreamsQActionRow
             {
-                Transportstreamsid= transportStream.TransportStreamId,
-                Transportstreamsname =transportStream.Name,
-                Transportstreamsmulticast= transportStream.Multicast,
-                Transportstreamsnetworkid= transportStream.NetworkId,
-                Transportstreamssourceip= transportStream.SourceIp,
-                Transportstreamslastpolltime=DateTime.Now.ToOADate(),
+                Transportstreamsid_101= transportStream.TransportStreamId.ToString(),
+                Transportstreamsname_102 =transportStream.Name,
+                Transportstreamsmulticast_103= transportStream.Multicast,
+                Transportstreamsnetworkid_105= transportStream.NetworkId.ToString(),
+                Transportstreamssourceip_104= transportStream.SourceIp,
+                Transportstreamslastpolltime_106=DateTime.Now.ToOADate(),
             };
-            protocol.AddRow(Transportstreams.tablePid, newTransportStreamRow);
+            protocol.transportstreams.SetRow(newTransportStreamRow, true);
 
             foreach (Service service in transportStream.Services)
             {
                 var newServicesRow = new ServicesQActionRow
                 {
-                    Servicesid = service.ServiceId,
-                    Servicesname = service.ServiceName,
-                    Servicesprovider= service.ServiceProvider,
-                    Servicestype= service.ServiceType,
-                    Servicestransportstreamid=transportStream.TransportStreamId,
-                    Serviceslastpolltime=DateTime.Now.ToOADate(),
+                    Servicesid_111 = service.ServiceId.ToString(),
+                    Servicesname_112 = service.ServiceName,
+                    Servicesprovider_114= service.ServiceProvider,
+                    Servicestype_113= service.ServiceType,
+                    Servicestransportstreamid_115=transportStream.TransportStreamId.ToString(),
+                    Serviceslastpolltime_116=DateTime.Now.ToOADate(),
                 };
-                protocol.AddRow(Transportstreams.tablePid, newServicesRow);
+                protocol.services.SetRow(newServicesRow, true);
             }
         }
     }

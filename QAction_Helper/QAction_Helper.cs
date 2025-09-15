@@ -10,6 +10,11 @@ public static class Parameter
 {
 	public class Write
 	{
+		/// <summary>PID: 4 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int forcepolldata_4 = 4;
+		/// <summary>PID: 4 | Type: write</summary>
+		public const int forcepolldata = 4;
 	}
 	public class Transportstreams
 	{
@@ -170,6 +175,8 @@ public static class Parameter
 }
 public class WriteParameters
 {
+	/// <summary>PID: 4  | Type: write | DISCREETS: Get Data = 1</summary>
+	public System.Object Forcepolldata {get { return Protocol.GetParameter(4); }set { Protocol.SetParameter(4, value); }}
 	public SLProtocolExt Protocol;
 	public WriteParameters(SLProtocolExt protocol)
 	{
@@ -184,6 +191,8 @@ public interface SLProtocolExt : SLProtocol
 	ServicesQActionTable services { get; set; }
 	object Afterstartup_dummy { get; set; }
 	object Polldata_dummy { get; set; }
+	object Forcepolldata_4 { get; set; }
+	object Forcepolldata { get; set; }
 	object Transportstreamsid_101 { get; set; }
 	object Transportstreamsid { get; set; }
 	object Transportstreamsname_102 { get; set; }
@@ -220,6 +229,10 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Afterstartup_dummy {get { return GetParameter(2); }set { SetParameter(2, value); }}
 	/// <summary>PID: 3  | Type: dummy</summary>
 	public System.Object Polldata_dummy {get { return GetParameter(3); }set { SetParameter(3, value); }}
+	/// <summary>PID: 4  | Type: write | DISCREETS: Get Data = 1</summary>
+	public System.Object Forcepolldata_4 {get { return GetParameter(4); }set { SetParameter(4, value); }}
+	/// <summary>PID: 4  | Type: write | DISCREETS: Get Data = 1</summary>
+	public System.Object Forcepolldata {get { return Write.Forcepolldata; }set { Write.Forcepolldata = value; }}
 	/// <summary>PID: 101  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Transportstreamsid_101 {get { return GetParameter(101); }set { SetParameter(101, value); }}
@@ -339,7 +352,6 @@ public class TransportstreamsQActionRow : QActionTableRow
 	public TransportstreamsQActionRow(System.Object[] oRow) : base(0, 6, oRow) { }
 	public static implicit operator TransportstreamsQActionRow(System.Object[] source) { return new TransportstreamsQActionRow(source); }
 	public static implicit operator System.Object[](TransportstreamsQActionRow source) { return source.ToObjectArray(); }
-	public System.String[] GetChildKeysServicesServicestransportstreamid(SLProtocol protocol) { return (System.String[])protocol.NotifyProtocol(196, 115, Key); }
 }
 /// <summary>IDX: 0</summary>
 public class ServicesQActionRow : QActionTableRow
@@ -378,6 +390,5 @@ public class ServicesQActionRow : QActionTableRow
 	public ServicesQActionRow(System.Object[] oRow) : base(0, 6, oRow) { }
 	public static implicit operator ServicesQActionRow(System.Object[] source) { return new ServicesQActionRow(source); }
 	public static implicit operator System.Object[](ServicesQActionRow source) { return source.ToObjectArray(); }
-	public System.Object[] GetParentRowTransportstreamsServicestransportstreamid(SLProtocol protocol) { return (System.Object[])protocol.GetRow(100, (System.String)Servicestransportstreamid); }
 }
 }

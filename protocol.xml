@@ -93,13 +93,6 @@ Any inquiries can be addressed to:
 					<Low>0</Low>
 					<High>9999</High>
 				</Range>
-				<Positions>
-					<Position>
-						<Page>General</Page>
-						<Column>0</Column>
-						<Row>3</Row>
-					</Position>
-				</Positions>
 			</Display>
 			<Measurement>
 				<Type>number</Type>
@@ -122,7 +115,7 @@ Any inquiries can be addressed to:
 					<Position>
 						<Page>General</Page>
 						<Column>0</Column>
-						<Row>4</Row>
+						<Row>2</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -286,7 +279,7 @@ Any inquiries can be addressed to:
 				<Type options="datetime">number</Type>
 			</Measurement>
 		</Param>
-		<Param id="2000">
+		<Param id="2000" save="true">
 			<Name>services</Name>
 			<Description>Services</Description>
 			<Type>array</Type>
@@ -354,7 +347,7 @@ Any inquiries can be addressed to:
 				<Type>string</Type>
 			</Measurement>
 		</Param>
-		<Param id="2003" trending="false">
+		<Param id="2003" trending="false" save="true">
 			<Name>servicesType</Name>
 			<Description>Type (Services)</Description>
 			<Type>read</Type>

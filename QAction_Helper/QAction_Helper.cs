@@ -301,10 +301,10 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Servicesname_2002 {get { return GetParameter(2002); }set { SetParameter(2002, value); }}
 	/// <summary>PID: 2002  | Type: read</summary>
 	public System.Object Servicesname {get { return GetParameter(2002); }set { SetParameter(2002, value); }}
-	/// <summary>PID: 2003  | Type: read</summary>
+	/// <summary>PID: 2003  | Type: read | DISCREETS: digital_television = 0, digital_radio = 1</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Servicestype_2003 {get { return GetParameter(2003); }set { SetParameter(2003, value); }}
-	/// <summary>PID: 2003  | Type: read</summary>
+	/// <summary>PID: 2003  | Type: read | DISCREETS: digital_television = 0, digital_radio = 1</summary>
 	public System.Object Servicestype {get { return GetParameter(2003); }set { SetParameter(2003, value); }}
 	/// <summary>PID: 2004  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]

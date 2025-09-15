@@ -26,10 +26,18 @@ public static class QAction
         {
             string datapath = @"C:\\Skyline DataMiner\\Documents\\SLC-C-TrainingExerciseQActionsAndTables\\Data.json";
 
-            var data = File.ReadAllText(datapath);
-            string dataFromJSON = Convert.ToString(data);
-            TransportStreams deserializedTransportStreamsData = SecureNewtonsoftDeserialization.DeserializeObject<TransportStreams>(dataFromJSON);
-            FillTables(protocol, deserializedTransportStreamsData);
+
+            if (datapath.IsPathValid())
+            {
+                var data = File.ReadAllText(datapath);
+                string dataFromJSON = Convert.ToString(data);
+                TransportStreams deserializedTransportStreamsData = SecureNewtonsoftDeserialization.DeserializeObject<TransportStreams>(dataFromJSON);
+                FillTables(protocol, deserializedTransportStreamsData);
+            }
+            else
+            {
+                protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|File path is not valid ${datapath}", LogType.Error, LogLevel.NoLogging);
+            }
         }
         catch (Exception ex)
         {

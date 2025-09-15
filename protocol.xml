@@ -405,7 +405,7 @@ Any inquiries can be addressed to:
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />
-		<QAction id="3" name="Parse Data Into Tables" encoding="csharp" triggers="4">
+		<QAction id="3" name="Parse Data Into Tables" encoding="csharp" triggers="3;4">
 		</QAction>
 	</QActions>
 
@@ -416,6 +416,14 @@ Any inquiries can be addressed to:
 			<Type>poll action</Type>
 			<Content>
 				<Action>2</Action>
+			</Content>
+		</Group>
+		<Group id="3">
+			<Name>Poll Data</Name>
+			<Description>Poll Data</Description>
+			<Type>poll action</Type>
+			<Content>
+				<Action>3</Action>
 			</Content>
 		</Group>
 	</Groups>
@@ -443,6 +451,11 @@ Any inquiries can be addressed to:
 			<On id="2">parameter</On>
 			<Type>run actions</Type>
 		</Action>
+		<Action id="3">
+			<Name>Poll Data</Name>
+			<On id="3">parameter</On>
+			<Type>run actions</Type>
+		</Action>
 	</Actions>
 
 	<Timers>
@@ -458,6 +471,7 @@ Any inquiries can be addressed to:
 			<Time initial="true">60000</Time>
 			<Interval>75</Interval>
 			<Content>
+				<Group>3</Group>
 			</Content>
 		</Timer>
 		<Timer id="3">

@@ -23,7 +23,9 @@ public static class QAction
     {
         try
         {
-            SecurePath dataPath = SecurePath.CreateSecurePath(@"C:\\Skyline DataMiner\\Documents\\SLC-C-TrainingExerciseQActionsAndTables\\Data.json");
+            string filePath= @"C:\\Skyline DataMiner\\Documents\\SLC-C-TrainingExerciseQActionsAndTables\\Data.json";
+
+            SecurePath dataPath = SecurePath.CreateSecurePath(filePath);
 
             var readDataFromFile = File.ReadAllText(dataPath);
             string dataToString = Convert.ToString(readDataFromFile);

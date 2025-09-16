@@ -261,7 +261,7 @@ Any inquiries can be addressed to:
 				<ColumnOption idx="1" pid="112" type="retrieved" options=";save" />
 				<ColumnOption idx="2" pid="113" type="retrieved" options=";save" />
 				<ColumnOption idx="3" pid="114" type="retrieved" options=";save" />
-				<ColumnOption idx="4" pid="115" type="retrieved" options=";save" />
+				<ColumnOption idx="4" pid="115" type="retrieved" options=";save;foreignKey=100" />
 				<ColumnOption idx="5" pid="116" type="retrieved" options=";save" />
 			</ArrayOptions>
 			<Information>
@@ -400,8 +400,10 @@ Any inquiries can be addressed to:
 			</Measurement>
 		</Param>
 	</Params>
-	
-	
+
+	<Relations>
+		<Relation path="100;110"/>
+	</Relations>
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />

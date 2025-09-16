@@ -23,12 +23,7 @@ public static class QAction
     {
         try
         {
-            string dataPath = @"C:\\Skyline DataMiner\\Documents\\SLC-C-TrainingExerciseQActionsAndTables\\Data.json";
-
-            if (!dataPath.IsPathValid())
-            {
-                protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|File path is not valid {dataPath}", LogType.Error, LogLevel.NoLogging);
-            }
+            SecurePath dataPath = SecurePath.CreateSecurePath(@"C:\\Skyline DataMiner\\Documents\\SLC-C-TrainingExerciseQActionsAndTables\\Data.json");
 
             var readDataFromFile = File.ReadAllText(dataPath);
             string dataToString = Convert.ToString(readDataFromFile);

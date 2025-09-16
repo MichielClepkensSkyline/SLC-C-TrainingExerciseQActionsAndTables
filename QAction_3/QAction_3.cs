@@ -38,9 +38,11 @@ public static class QAction
 
     public static void FillTables(SLProtocolExt protocol, TransportStreams transportStreams)
     {
+        List<object[]> transportStreamsObjectList = new List<object[]>();
+        List<object[]> servicesObjectList = new List<object[]>();
         foreach (TransportStream transportStream in transportStreams.TransportStreamsList)
         {
-            var newTransportStreamRow = new TransportstreamsQActionRow
+            transportStreamsObjectList.Add(new TransportstreamsQActionRow
             {
                 Transportstreamsid_101= transportStream.TransportStreamId.ToString(),
                 Transportstreamsname_102 =transportStream.Name,
@@ -48,12 +50,11 @@ public static class QAction
                 Transportstreamsnetworkid_105= transportStream.NetworkId.ToString(),
                 Transportstreamssourceip_104= transportStream.SourceIp,
                 Transportstreamslastpolltime_106=DateTime.Now.ToOADate(),
-            };
-            protocol.transportstreams.SetRow(newTransportStreamRow, true);
+            }.ToObjectArray());
 
             foreach (Service service in transportStream.Services)
             {
-                var newServicesRow = new ServicesQActionRow
+                servicesObjectList.Add( new ServicesQActionRow
                 {
                     Servicesid_111 = service.ServiceId.ToString(),
                     Servicesname_112 = service.ServiceName,
@@ -61,9 +62,11 @@ public static class QAction
                     Servicestype_113= service.ServiceType,
                     Servicestransportstreamid_115=transportStream.TransportStreamId.ToString(),
                     Serviceslastpolltime_116=DateTime.Now.ToOADate(),
-                };
-                protocol.services.SetRow(newServicesRow, true);
+                }.ToObjectArray());
             }
         }
+
+        protocol.FillArray(Transportstreams.tablePid, transportStreamsObjectList);
+        protocol.FillArray(Services.tablePid, transportStreamsObjectList);
     }
 }

@@ -111,17 +111,18 @@ Any inquiries can be addressed to:
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="1000">
+		<Param id="1000" save="true">
 			<Name>transportstreams</Name>
 			<Description>Transportstreams</Description>
 			<Type>array</Type>
-			<ArrayOptions index="0" options=";naming=/1002">
+			<ArrayOptions index="0" options=";naming=/1001,1002">
 				<ColumnOption idx="0" pid="1001" type="retrieved" options=""/>
 				<ColumnOption idx="1" pid="1002" type="retrieved" options=""/>
-				<ColumnOption idx="2" pid="1003" type="retrieved" options=""/>
-				<ColumnOption idx="3" pid="1004" type="retrieved" options=""/>
+				<ColumnOption idx="2" pid="1003" type="retrieved" options=";save"/>
+				<ColumnOption idx="3" pid="1004" type="retrieved" options=";save"/>
 				<ColumnOption idx="4" pid="1005" type="retrieved" options=""/>
 				<ColumnOption idx="5" pid="1006" type="retrieved" options=""/>
+				<ColumnOption idx="6" pid="1007" type="displaykey" options=""/>
 			</ArrayOptions>
 			<Information>
 				<Subtext>This contains all the streams that are used for the transportation of the data of the services</Subtext>
@@ -137,7 +138,7 @@ Any inquiries can be addressed to:
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:1001|0-1002|1-1003|2-1004|3-1005|4-1006|5,width:0-163-119-120-100-212,sort:STRING|ASC|1-STRING-STRING-STRING-INT-INT|DESC|0,lines:25,filter:true">table</Type>
+				<Type options="tab=columns:1001|0-1002|1-1003|2-1004|3-1005|4-1006|5-1007|6,width:0-163-119-120-100-212-0,sort:STRING|ASC|1-STRING-STRING-STRING-INT-INT|DESC|0-STRING,lines:25,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="1001" trending="false">
@@ -256,18 +257,38 @@ Any inquiries can be addressed to:
 				<Type options="datetime">number</Type>
 			</Measurement>
 		</Param>
-		<Param id="2000" save="true">
+		<Param id="1007" trending="false">
+			<Name>transportstreamsDisplayKey</Name>
+			<Description>Display Key (Transportstreams)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the display key of the transportstreams table.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="2000">
 			<Name>services</Name>
 			<Description>Services</Description>
 			<Type>array</Type>
-			<ArrayOptions index="0" options=";naming=\2002">
+			<ArrayOptions index="0" options=";naming=\2001,2002">
 				<ColumnOption idx="0" pid="2001" type="retrieved" options="" />
 				<ColumnOption idx="1" pid="2002" type="retrieved" options=""/>
 				<ColumnOption idx="2" pid="2003" type="retrieved" options=""/>
 				<ColumnOption idx="3" pid="2004" type="retrieved" options=""/>
 				<ColumnOption idx="4" pid="2005" type="retrieved" options=""/>
 				<ColumnOption idx="5" pid="2006" type="retrieved" options=";foreignKey=1000"/>
-				<ColumnOption idx="6" pid="2007" type="retrieved" options=""/>
+				<ColumnOption idx="6" pid="2007" type="retrieved" options=";save"/>
+				<ColumnOption idx="7" pid="2008" type="displaykey" options=""/>
 			</ArrayOptions>
 			<Information>
 				<Subtext>This table contains all the services that are relaying on a certain transportstream.</Subtext>
@@ -283,7 +304,7 @@ Any inquiries can be addressed to:
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:2001|0-2002|1-2003|2-2004|3-2005|4-2006|5-2007|6,width:0-133-104-151-160-0-168,sort:STRING|ASC|1-STRING-STRING-STRING-INT|DESC|0-STRING-STRING,lines:25,filter:true">table</Type>
+				<Type options="tab=columns:2001|0-2002|1-2003|2-2004|3-2005|4-2006|5-2007|6-2008|7,width:0-133-104-151-160-0-168-0,sort:STRING|ASC|1-STRING-STRING-STRING-INT|DESC|0-STRING-STRING-STRING,lines:25,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="2001" trending="false">
@@ -324,7 +345,7 @@ Any inquiries can be addressed to:
 				<Type>string</Type>
 			</Measurement>
 		</Param>
-		<Param id="2003" trending="false" save="true">
+		<Param id="2003" trending="false">
 			<Name>servicesType</Name>
 			<Description>Type (Services)</Description>
 			<Type>read</Type>
@@ -421,7 +442,25 @@ Any inquiries can be addressed to:
 				<Type>string</Type>
 			</Measurement>
 		</Param>
-		
+		<Param id="2008" trending="false">
+			<Name>servicesDisplayKey</Name>
+			<Description>Display Key (Services)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the display key of the services table.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
 		<Param id="3000" trending="false">
 			<Name>combinedTable</Name>
 			<Description>Tables Combined</Description>

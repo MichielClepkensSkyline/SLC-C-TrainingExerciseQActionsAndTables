@@ -66,6 +66,11 @@ public static class Parameter
 			public const int transportstreamslastpolledtime_1006 = 1006;
 			/// <summary>PID: 1006 | Type: read</summary>
 			public const int transportstreamslastpolledtime = 1006;
+			/// <summary>PID: 1007 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int transportstreamsdisplaykey_1007 = 1007;
+			/// <summary>PID: 1007 | Type: read</summary>
+			public const int transportstreamsdisplaykey = 1007;
 			public class Write
 			{
 			}
@@ -102,6 +107,11 @@ public static class Parameter
 			public const int transportstreamslastpolledtime_1006 = 5;
 			/// <summary>IDX: 5 | Type: read</summary>
 			public const int transportstreamslastpolledtime = 5;
+			/// <summary>IDX: 6 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int transportstreamsdisplaykey_1007 = 6;
+			/// <summary>IDX: 6 | Type: read</summary>
+			public const int transportstreamsdisplaykey = 6;
 		}
 	}
 	public class Services
@@ -149,6 +159,11 @@ public static class Parameter
 			public const int servicestransportstreamname_2007 = 2007;
 			/// <summary>PID: 2007 | Type: read</summary>
 			public const int servicestransportstreamname = 2007;
+			/// <summary>PID: 2008 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int servicesdisplaykey_2008 = 2008;
+			/// <summary>PID: 2008 | Type: read</summary>
+			public const int servicesdisplaykey = 2008;
 			public class Write
 			{
 			}
@@ -190,6 +205,11 @@ public static class Parameter
 			public const int servicestransportstreamname_2007 = 6;
 			/// <summary>IDX: 6 | Type: read</summary>
 			public const int servicestransportstreamname = 6;
+			/// <summary>IDX: 7 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int servicesdisplaykey_2008 = 7;
+			/// <summary>IDX: 7 | Type: read</summary>
+			public const int servicesdisplaykey = 7;
 		}
 	}
 }
@@ -226,6 +246,8 @@ public interface SLProtocolExt : SLProtocol
 	object Transportstreamsnetworkid { get; set; }
 	object Transportstreamslastpolledtime_1006 { get; set; }
 	object Transportstreamslastpolledtime { get; set; }
+	object Transportstreamsdisplaykey_1007 { get; set; }
+	object Transportstreamsdisplaykey { get; set; }
 	object Servicesid_2001 { get; set; }
 	object Servicesid { get; set; }
 	object Servicesname_2002 { get; set; }
@@ -240,6 +262,8 @@ public interface SLProtocolExt : SLProtocol
 	object Servicestransportstreamidfk { get; set; }
 	object Servicestransportstreamname_2007 { get; set; }
 	object Servicestransportstreamname { get; set; }
+	object Servicesdisplaykey_2008 { get; set; }
+	object Servicesdisplaykey { get; set; }
 	object Combinedtable_3000 { get; set; }
 	object Combinedtable { get; set; }
 	WriteParameters Write { get; set; }
@@ -291,6 +315,11 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Transportstreamslastpolledtime_1006 {get { return GetParameter(1006); }set { SetParameter(1006, value); }}
 	/// <summary>PID: 1006  | Type: read</summary>
 	public System.Object Transportstreamslastpolledtime {get { return GetParameter(1006); }set { SetParameter(1006, value); }}
+	/// <summary>PID: 1007  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Transportstreamsdisplaykey_1007 {get { return GetParameter(1007); }set { SetParameter(1007, value); }}
+	/// <summary>PID: 1007  | Type: read</summary>
+	public System.Object Transportstreamsdisplaykey {get { return GetParameter(1007); }set { SetParameter(1007, value); }}
 	/// <summary>PID: 2001  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Servicesid_2001 {get { return GetParameter(2001); }set { SetParameter(2001, value); }}
@@ -326,6 +355,11 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Servicestransportstreamname_2007 {get { return GetParameter(2007); }set { SetParameter(2007, value); }}
 	/// <summary>PID: 2007  | Type: read</summary>
 	public System.Object Servicestransportstreamname {get { return GetParameter(2007); }set { SetParameter(2007, value); }}
+	/// <summary>PID: 2008  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Servicesdisplaykey_2008 {get { return GetParameter(2008); }set { SetParameter(2008, value); }}
+	/// <summary>PID: 2008  | Type: read</summary>
+	public System.Object Servicesdisplaykey {get { return GetParameter(2008); }set { SetParameter(2008, value); }}
 	/// <summary>PID: 3000  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Combinedtable_3000 {get { return GetParameter(3000); }set { SetParameter(3000, value); }}
@@ -386,8 +420,13 @@ public class TransportstreamsQActionRow : QActionTableRow
 	public System.Object Transportstreamslastpolledtime_1006 { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
 	/// <summary>PID: 1006 | Type: read</summary>
 	public System.Object Transportstreamslastpolledtime { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
-	public TransportstreamsQActionRow() : base(0, 6) { }
-	public TransportstreamsQActionRow(System.Object[] oRow) : base(0, 6, oRow) { }
+	/// <summary>PID: 1007 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Transportstreamsdisplaykey_1007 { get { if (base.Columns.ContainsKey(6)) { return base.Columns[6]; } else { return null; } } set { if (base.Columns.ContainsKey(6)) { base.Columns[6] = value; } else { base.Columns.Add(6, value); } } }
+	/// <summary>PID: 1007 | Type: read</summary>
+	public System.Object Transportstreamsdisplaykey { get { if (base.Columns.ContainsKey(6)) { return base.Columns[6]; } else { return null; } } set { if (base.Columns.ContainsKey(6)) { base.Columns[6] = value; } else { base.Columns.Add(6, value); } } }
+	public TransportstreamsQActionRow() : base(0, 7) { }
+	public TransportstreamsQActionRow(System.Object[] oRow) : base(0, 7, oRow) { }
 	public static implicit operator TransportstreamsQActionRow(System.Object[] source) { return new TransportstreamsQActionRow(source); }
 	public static implicit operator System.Object[](TransportstreamsQActionRow source) { return source.ToObjectArray(); }
 	public System.String[] GetChildKeysServicesServicestransportstreamidfk(SLProtocol protocol) { return (System.String[])protocol.NotifyProtocol(196, 2006, Key); }
@@ -430,8 +469,13 @@ public class ServicesQActionRow : QActionTableRow
 	public System.Object Servicestransportstreamname_2007 { get { if (base.Columns.ContainsKey(6)) { return base.Columns[6]; } else { return null; } } set { if (base.Columns.ContainsKey(6)) { base.Columns[6] = value; } else { base.Columns.Add(6, value); } } }
 	/// <summary>PID: 2007 | Type: read</summary>
 	public System.Object Servicestransportstreamname { get { if (base.Columns.ContainsKey(6)) { return base.Columns[6]; } else { return null; } } set { if (base.Columns.ContainsKey(6)) { base.Columns[6] = value; } else { base.Columns.Add(6, value); } } }
-	public ServicesQActionRow() : base(0, 7) { }
-	public ServicesQActionRow(System.Object[] oRow) : base(0, 7, oRow) { }
+	/// <summary>PID: 2008 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Servicesdisplaykey_2008 { get { if (base.Columns.ContainsKey(7)) { return base.Columns[7]; } else { return null; } } set { if (base.Columns.ContainsKey(7)) { base.Columns[7] = value; } else { base.Columns.Add(7, value); } } }
+	/// <summary>PID: 2008 | Type: read</summary>
+	public System.Object Servicesdisplaykey { get { if (base.Columns.ContainsKey(7)) { return base.Columns[7]; } else { return null; } } set { if (base.Columns.ContainsKey(7)) { base.Columns[7] = value; } else { base.Columns.Add(7, value); } } }
+	public ServicesQActionRow() : base(0, 8) { }
+	public ServicesQActionRow(System.Object[] oRow) : base(0, 8, oRow) { }
 	public static implicit operator ServicesQActionRow(System.Object[] source) { return new ServicesQActionRow(source); }
 	public static implicit operator System.Object[](ServicesQActionRow source) { return source.ToObjectArray(); }
 	public System.Object[] GetParentRowTransportstreamsServicestransportstreamidfk(SLProtocol protocol) { return (System.Object[])protocol.GetRow(1000, (System.String)Servicestransportstreamidfk); }

@@ -1,19 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Runtime.CompilerServices;
-using System.Text;
-using Newtonsoft.Json;
 using QAction_3;
-using Skyline.DataMiner.Scripting;
-using Skyline.DataMiner.Utils.Protocol.Extension;
-using Skyline.DataMiner.Utils.SecureCoding;
 using Skyline.DataMiner.Scripting;
 using Skyline.DataMiner.Utils.SecureCoding.SecureIO;
 using Skyline.DataMiner.Utils.SecureCoding.SecureSerialization.Json.Newtonsoft;
-using static Skyline.DataMiner.Scripting.Parameter;
-using System.Linq;
 
 /// <summary>
 /// DataMiner QAction Class.
@@ -37,7 +28,7 @@ public static class QAction
             string jsonString = File.ReadAllText(secureFullPath);
             JsonStructure json = SecureNewtonsoftDeserialization.DeserializeObject<JsonStructure>(jsonString);
 
-            FillTransportstreamRows(json, transportstreamRows, servicesRows);
+            FillTransportstreamRows(protocol, json, transportstreamRows, servicesRows);
 
             // Convert rows to columns
             object[] transportstreamColumns = protocol.transportstreams.QActionRowsToObjectFillArray(transportstreamRows.ToArray());
@@ -52,39 +43,53 @@ public static class QAction
 		}
 	}
 
-    private static void FillTransportstreamRows(JsonStructure json, List<TransportstreamsQActionRow> transportstreamRows, List<ServicesQActionRow> servicesRows)
+    private static void FillTransportstreamRows(SLProtocolExt protocol, JsonStructure json, List<TransportstreamsQActionRow> transportstreamRows, List<ServicesQActionRow> servicesRows)
     {
         foreach (Transportstream transportstream in json.Transportstreams)
         {
-            TransportstreamsQActionRow transportstreamRow = new TransportstreamsQActionRow
+            if (transportstream.TransportstreamId != null)
             {
-                Transportstreamsid = transportstream.TransportstreamId,
-                Transportstreamsname = transportstream.TransportstreamName,
-                Transportstreamsmulticast = transportstream.Multicast,
-                Transportstreamssourceip = transportstream.SourceIp,
-                Transportstreamsnetworkid = transportstream.NetworkId,
-                Transportstreamslastpolledtime = DateTime.Now.ToOADate(),
-            };
-            transportstreamRows.Add(transportstreamRow);
-            FillServicesRows(transportstream, servicesRows);
+                TransportstreamsQActionRow transportstreamRow = new TransportstreamsQActionRow
+                {
+                    Transportstreamsid = transportstream.TransportstreamId,
+                    Transportstreamsname = transportstream.TransportstreamName,
+                    Transportstreamsmulticast = transportstream.Multicast,
+                    Transportstreamssourceip = transportstream.SourceIp,
+                    Transportstreamsnetworkid = transportstream.NetworkId,
+                    Transportstreamslastpolledtime = DateTime.Now.ToOADate(),
+                };
+                transportstreamRows.Add(transportstreamRow);
+                FillServicesRows(protocol, transportstream, servicesRows);
+            }
+            else
+            {
+                protocol.Log($"QA{protocol.QActionID}|FillTransportstreamRows|Transportstream Id is missing", LogType.Error, LogLevel.NoLogging);
+            }
         }
     }
 
-    private static void FillServicesRows(Transportstream transportstream, List<ServicesQActionRow> servicesRows)
+    private static void FillServicesRows(SLProtocolExt protocol, Transportstream transportstream, List<ServicesQActionRow> servicesRows)
     {
         foreach (Service service in transportstream.Services)
         {
-            ServicesQActionRow serviceRow = new ServicesQActionRow
+            if (service.ServiceId != null)
             {
-                Servicesid = service.ServiceId,
-                Servicesname = service.ServiceName,
-                Servicestype = service.ServiceType,
-                Servicesprovider = service.ServiceProvider,
-                Serviceslastpolledtime = DateTime.Now.ToOADate(),
-                Servicestransportstreamidfk = transportstream.TransportstreamId,
-                Servicestransportstreamname = transportstream.TransportstreamName,
-            };
-            servicesRows.Add(serviceRow);
+                ServicesQActionRow serviceRow = new ServicesQActionRow
+                {
+                    Servicesid = service.ServiceId,
+                    Servicesname = service.ServiceName,
+                    Servicestype = service.ServiceType,
+                    Servicesprovider = service.ServiceProvider,
+                    Serviceslastpolledtime = DateTime.Now.ToOADate(),
+                    Servicestransportstreamidfk = transportstream.TransportstreamId,
+                    Servicestransportstreamname = transportstream.TransportstreamName,
+                };
+                servicesRows.Add(serviceRow);
+            }
+            else
+            {
+                protocol.Log($"QA{protocol.QActionID}|FillServicesRows|Service Id is missing", LogType.Error, LogLevel.NoLogging);
+            }
         }
     }
 }

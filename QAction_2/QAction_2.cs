@@ -18,7 +18,7 @@ public static class QAction
     {
         try
         {
-
+            protocol.Log("QAction_2 started");
         }
         catch (Exception ex)
         {

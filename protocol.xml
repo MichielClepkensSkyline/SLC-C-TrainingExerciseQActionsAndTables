@@ -111,15 +111,15 @@ Any inquiries can be addressed to:
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="1000" save="true">
+		<Param id="1000">
 			<Name>transportstreams</Name>
 			<Description>Transportstreams</Description>
 			<Type>array</Type>
 			<ArrayOptions index="0" options=";naming=/1001,1002">
 				<ColumnOption idx="0" pid="1001" type="retrieved" options=""/>
 				<ColumnOption idx="1" pid="1002" type="retrieved" options=""/>
-				<ColumnOption idx="2" pid="1003" type="retrieved" options=";save"/>
-				<ColumnOption idx="3" pid="1004" type="retrieved" options=";save"/>
+				<ColumnOption idx="2" pid="1003" type="retrieved" options=""/>
+				<ColumnOption idx="3" pid="1004" type="retrieved" options=""/>
 				<ColumnOption idx="4" pid="1005" type="retrieved" options=""/>
 				<ColumnOption idx="5" pid="1006" type="retrieved" options=""/>
 				<ColumnOption idx="6" pid="1007" type="displaykey" options=""/>
@@ -287,7 +287,7 @@ Any inquiries can be addressed to:
 				<ColumnOption idx="3" pid="2004" type="retrieved" options=""/>
 				<ColumnOption idx="4" pid="2005" type="retrieved" options=""/>
 				<ColumnOption idx="5" pid="2006" type="retrieved" options=";foreignKey=1000"/>
-				<ColumnOption idx="6" pid="2007" type="retrieved" options=";save"/>
+				<ColumnOption idx="6" pid="2007" type="retrieved" options=""/>
 				<ColumnOption idx="7" pid="2008" type="displaykey" options=""/>
 			</ArrayOptions>
 			<Information>
@@ -361,7 +361,17 @@ Any inquiries can be addressed to:
 				<RTDisplay>true</RTDisplay>
 			</Display>
 			<Measurement>
-				<Type>string</Type>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Digital Radio</Display>
+						<Value>digital_radio</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Digital Television</Display>
+						<Value>digital_television</Value>
+					</Discreet>
+				</Discreets>
 			</Measurement>
 		</Param>
 		<Param id="2004" trending="false">

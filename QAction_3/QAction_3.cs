@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using QAction_3;
 using Skyline.DataMiner.Scripting;
 using Skyline.DataMiner.Utils.SecureCoding.SecureIO;
@@ -19,8 +20,8 @@ public static class QAction
 	{
 		try
 		{
-            List<TransportstreamsQActionRow> transportstreamRows = new List<TransportstreamsQActionRow>();
-            List<ServicesQActionRow> servicesRows = new List<ServicesQActionRow>();
+            Dictionary<string, TransportstreamsQActionRow> transportstreamRows = new Dictionary<string, TransportstreamsQActionRow>();
+            Dictionary<string, ServicesQActionRow> servicesRows = new Dictionary<string, ServicesQActionRow>();
 
             string fileName = "C:\\Skyline DataMiner\\Documents\\SLC-C-TrainingExerciseQActionsAndTables\\Data.json";
             SecurePath secureFullPath = SecurePath.CreateSecurePath(fileName);
@@ -31,8 +32,8 @@ public static class QAction
             FillTransportstreamRows(protocol, json, transportstreamRows, servicesRows);
 
             // Convert rows to columns
-            object[] transportstreamColumns = protocol.transportstreams.QActionRowsToObjectFillArray(transportstreamRows.ToArray());
-            object[] servicesColumns = protocol.services.QActionRowsToObjectFillArray(servicesRows.ToArray());
+            object[] transportstreamColumns = protocol.transportstreams.QActionRowsToObjectFillArray(transportstreamRows.Values.ToArray());
+            object[] servicesColumns = protocol.services.QActionRowsToObjectFillArray(servicesRows.Values.ToArray());
 
             protocol.transportstreams.FillArray(transportstreamColumns);
             protocol.services.FillArray(servicesColumns);
@@ -43,11 +44,11 @@ public static class QAction
 		}
 	}
 
-    private static void FillTransportstreamRows(SLProtocolExt protocol, JsonStructure json, List<TransportstreamsQActionRow> transportstreamRows, List<ServicesQActionRow> servicesRows)
+    private static void FillTransportstreamRows(SLProtocolExt protocol, JsonStructure json, Dictionary<string, TransportstreamsQActionRow> transportstreamRows, Dictionary<string, ServicesQActionRow> servicesRows)
     {
         foreach (Transportstream transportstream in json.Transportstreams)
         {
-            if (transportstream.TransportstreamId != null)
+            if (!String.IsNullOrWhiteSpace(transportstream.TransportstreamId))
             {
                 TransportstreamsQActionRow transportstreamRow = new TransportstreamsQActionRow
                 {
@@ -58,7 +59,7 @@ public static class QAction
                     Transportstreamsnetworkid = transportstream.NetworkId,
                     Transportstreamslastpolledtime = DateTime.Now.ToOADate(),
                 };
-                transportstreamRows.Add(transportstreamRow);
+                transportstreamRows.Add(transportstream.TransportstreamId,transportstreamRow);
                 FillServicesRows(protocol, transportstream, servicesRows);
             }
             else
@@ -68,11 +69,11 @@ public static class QAction
         }
     }
 
-    private static void FillServicesRows(SLProtocolExt protocol, Transportstream transportstream, List<ServicesQActionRow> servicesRows)
+    private static void FillServicesRows(SLProtocolExt protocol, Transportstream transportstream, Dictionary<string, ServicesQActionRow> servicesRows)
     {
         foreach (Service service in transportstream.Services)
         {
-            if (service.ServiceId != null)
+            if (!String.IsNullOrWhiteSpace(service.ServiceId))
             {
                 ServicesQActionRow serviceRow = new ServicesQActionRow
                 {
@@ -84,7 +85,7 @@ public static class QAction
                     Servicestransportstreamidfk = transportstream.TransportstreamId,
                     Servicestransportstreamname = transportstream.TransportstreamName,
                 };
-                servicesRows.Add(serviceRow);
+                servicesRows.Add(service.ServiceId, serviceRow);
             }
             else
             {

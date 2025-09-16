@@ -53,27 +53,41 @@ public static class QAction
 			List<object[]> servicesTableContent = new List<object[]>();
 			foreach (Transport_Stream transport_stream in deserializedTransportStreams.Transport_streams)
 			{
-				transportStreamsTableContent.Add(new TransportstreamsQActionRow
+				if (transport_stream.Ts_id != null)
 				{
-					Transportstreamsid_1001 = transport_stream.Ts_id.ToString(),
-					Transportstreamsname_1002 = transport_stream.Ts_name,
-					Transportstreamsmulticast_1003 = transport_stream.Multicast,
-					Transportstreamssourceipaddress_1004 = transport_stream.SourceIp,
-					Transportstreamsnetworkid_1005 = transport_stream.Network_id,
-					Transportstreamslastpolltime_1006 = DateTime.Now.ToOADate(),
-				}.ToObjectArray());
+					transportStreamsTableContent.Add(new TransportstreamsQActionRow
+					{
+						Transportstreamsid_1001 = transport_stream.Ts_id.ToString(),
+						Transportstreamsname_1002 = transport_stream.Ts_name,
+						Transportstreamsmulticast_1003 = transport_stream.Multicast,
+						Transportstreamssourceipaddress_1004 = transport_stream.SourceIp,
+						Transportstreamsnetworkid_1005 = transport_stream.Network_id,
+						Transportstreamslastpolltime_1006 = DateTime.Now.ToOADate(),
+					}.ToObjectArray());
+				}
+				else
+				{
+					protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run| Transportstream Id is null", LogType.Error, LogLevel.NoLogging);
+				}
 
 				foreach (Service service in transport_stream.Services)
 				{
-					servicesTableContent.Add(new ServicesQActionRow
+					if (service.Service_id != null)
 					{
-						Servicesid_2001 = service.Service_id.ToString(),
-						Servicesname_2002 = service.Service_name,
-						Servicestype_2003 = service.Service_type,
-						Servicesprovider_2004 = service.Service_provider,
-						Serviceslastpolltime_2005 = DateTime.Now.ToOADate(),
-						Servicestransportstreamid_2006 = transport_stream.Ts_id.ToString(),
-					}.ToObjectArray());
+						servicesTableContent.Add(new ServicesQActionRow
+						{
+							Servicesid_2001 = service.Service_id.ToString(),
+							Servicesname_2002 = service.Service_name,
+							Servicestype_2003 = service.Service_type,
+							Servicesprovider_2004 = service.Service_provider,
+							Serviceslastpolltime_2005 = DateTime.Now.ToOADate(),
+							Servicestransportstreamid_2006 = transport_stream.Ts_id.ToString(),
+						}.ToObjectArray());
+					}
+					else
+					{
+						protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run| Service Id is null", LogType.Error, LogLevel.NoLogging);
+					}
 				}
 			}
 

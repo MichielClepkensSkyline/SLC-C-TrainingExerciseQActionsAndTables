@@ -44,9 +44,14 @@ public static class QAction
         List<object[]> servicesObjectList = new List<object[]>();
         foreach (TransportStream transportStream in transportStreams.TransportStreamsList)
         {
+            if(String.IsNullOrWhiteSpace(transportStream.TransportStreamId))
+            {
+                protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|No primary key found for traansport stream{Environment.NewLine}", LogType.Error, LogLevel.NoLogging);
+            }
+
             transportStreamsObjectList.Add(new TransportstreamsQActionRow
             {
-                Transportstreamsid_101= transportStream.TransportStreamId.ToString(),
+                Transportstreamsid_101= transportStream.TransportStreamId,
                 Transportstreamsname_102 =transportStream.Name,
                 Transportstreamsmulticast_103= transportStream.Multicast,
                 Transportstreamsnetworkid_105= transportStream.NetworkId.ToString(),
@@ -56,19 +61,24 @@ public static class QAction
 
             foreach (Service service in transportStream.Services)
             {
-                servicesObjectList.Add( new ServicesQActionRow
+                if (String.IsNullOrWhiteSpace(service.ServiceId)) 
                 {
-                    Servicesid_111 = service.ServiceId.ToString(),
+                    protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|No primary key found for the service {Environment.NewLine}", LogType.Error, LogLevel.NoLogging);
+                }
+
+                servicesObjectList.Add(new ServicesQActionRow
+                {
+                    Servicesid_111 = service.ServiceId,
                     Servicesname_112 = service.ServiceName,
                     Servicesprovider_114= service.ServiceProvider,
                     Servicestype_113= service.ServiceType,
-                    Servicestransportstreamid_115=transportStream.TransportStreamId.ToString(),
+                    Servicestransportstreamid_115=transportStream.TransportStreamId,
                     Serviceslastpolltime_116=DateTime.Now.ToOADate(),
                 }.ToObjectArray());
             }
         }
 
-        protocol.FillArray(Transportstreams.tablePid, transportStreamsObjectList);
-        protocol.FillArray(Services.tablePid, transportStreamsObjectList);
+        protocol.FillArray(Transportstreams.tablePid, transportStreamsObjectList, NotifyProtocol.SaveOption.Full);
+        protocol.FillArray(Services.tablePid, servicesObjectList, NotifyProtocol.SaveOption.Full);
     }
 }

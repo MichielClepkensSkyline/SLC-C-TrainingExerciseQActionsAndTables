@@ -16,7 +16,7 @@
     public class TransportStream
     {
         [JsonProperty("ts_id")]
-        public int TransportStreamId { get; set; }
+        public string TransportStreamId { get; set; }
 
         [JsonProperty("ts_name")]
         public string Name { get; set; }

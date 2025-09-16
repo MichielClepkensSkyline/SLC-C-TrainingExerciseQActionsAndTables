@@ -10,7 +10,7 @@
     public class Service
     {
         [JsonProperty("service_id")]
-        public int ServiceId { get; set; }
+        public string ServiceId { get; set; }
 
         [JsonProperty("service_name")]
         public string ServiceName { get; set; }

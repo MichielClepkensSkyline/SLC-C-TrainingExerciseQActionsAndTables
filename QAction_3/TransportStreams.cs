@@ -12,7 +12,7 @@
 	public class Transport_Stream
 	{
 		[JsonPropertyName("ts_id")]
-		public int? Ts_id { get; set; }
+		public string Ts_id { get; set; }
 
 		[JsonPropertyName("ts_name")]
 		public string Ts_name { get; set; }
@@ -33,7 +33,7 @@
 	public class Service
 	{
 		[JsonPropertyName("service_id")] 
-		public int? Service_id { get; set; }
+		public string Service_id { get; set; }
 
 		[JsonPropertyName("service_name")]
 		public string Service_name { get; set; }

@@ -1,10 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
+using Newtonsoft.Json;
+
 using QAction_3;
+
 using Skyline.DataMiner.Scripting;
 using Skyline.DataMiner.Utils.SecureCoding.SecureIO;
 using Skyline.DataMiner.Utils.SecureCoding.SecureSerialization.Json.Newtonsoft;
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 /// <summary>
 /// DataMiner QAction Class: Poll Data.
@@ -49,13 +54,13 @@ public static class QAction
 	{
 		try
 		{
-			List<object[]> transportStreamsTableContent = new List<object[]>();
-			List<object[]> servicesTableContent = new List<object[]>();
+			Dictionary<string, object[]> transportStreamsTableContent = new Dictionary<string, object[]>();
+			Dictionary<string, object[]> servicesTableContent = new Dictionary<string, object[]>();
 			foreach (Transport_Stream transport_stream in deserializedTransportStreams.Transport_streams)
 			{
-				if (transport_stream.Ts_id != null)
+				if (!String.IsNullOrWhiteSpace(transport_stream.Ts_id))
 				{
-					transportStreamsTableContent.Add(new TransportstreamsQActionRow
+					transportStreamsTableContent[transport_stream.Ts_id]= new TransportstreamsQActionRow
 					{
 						Transportstreamsid_1001 = transport_stream.Ts_id.ToString(),
 						Transportstreamsname_1002 = transport_stream.Ts_name,
@@ -63,7 +68,7 @@ public static class QAction
 						Transportstreamssourceipaddress_1004 = transport_stream.SourceIp,
 						Transportstreamsnetworkid_1005 = transport_stream.Network_id,
 						Transportstreamslastpolltime_1006 = DateTime.Now.ToOADate(),
-					}.ToObjectArray());
+					}.ToObjectArray();
 				}
 				else
 				{
@@ -72,9 +77,9 @@ public static class QAction
 
 				foreach (Service service in transport_stream.Services)
 				{
-					if (service.Service_id != null)
+					if (!String.IsNullOrWhiteSpace(service.Service_id))
 					{
-						servicesTableContent.Add(new ServicesQActionRow
+						servicesTableContent[service.Service_id] = new ServicesQActionRow
 						{
 							Servicesid_2001 = service.Service_id.ToString(),
 							Servicesname_2002 = service.Service_name,
@@ -82,7 +87,7 @@ public static class QAction
 							Servicesprovider_2004 = service.Service_provider,
 							Serviceslastpolltime_2005 = DateTime.Now.ToOADate(),
 							Servicestransportstreamid_2006 = transport_stream.Ts_id.ToString(),
-						}.ToObjectArray());
+						}.ToObjectArray();
 					}
 					else
 					{
@@ -91,8 +96,8 @@ public static class QAction
 				}
 			}
 
-			protocol.FillArray(Parameter.Transportstreams.tablePid, transportStreamsTableContent, NotifyProtocol.SaveOption.Full);
-			protocol.FillArray(Parameter.Services.tablePid, servicesTableContent, NotifyProtocol.SaveOption.Full);
+			protocol.FillArray(Parameter.Transportstreams.tablePid, transportStreamsTableContent.Values.ToList(), NotifyProtocol.SaveOption.Full);
+			protocol.FillArray(Parameter.Services.tablePid, servicesTableContent.Values.ToList(), NotifyProtocol.SaveOption.Full);
 		}
 		catch (Exception ex)
 		{

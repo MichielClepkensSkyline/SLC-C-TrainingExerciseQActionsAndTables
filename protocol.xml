@@ -112,10 +112,10 @@ Any inquiries can be addressed to:
 			<ArrayOptions index="0" options="naming=/1002">
 				<ColumnOption idx="0" pid="1001" type="retrieved" options=""/>
 				<ColumnOption idx="1" pid="1002" type="retrieved" options=""/>
-				<ColumnOption idx="2" pid="1003" type="retrieved" options=";save"/>
-				<ColumnOption idx="3" pid="1004" type="retrieved" options=";save"/>
-				<ColumnOption idx="4" pid="1005" type="retrieved" options=";save"/>
-				<ColumnOption idx="5" pid="1006" type="retrieved" options=";save"/>
+				<ColumnOption idx="2" pid="1003" type="retrieved" options=""/>
+				<ColumnOption idx="3" pid="1004" type="retrieved" options=""/>
+				<ColumnOption idx="4" pid="1005" type="retrieved" options=""/>
+				<ColumnOption idx="5" pid="1006" type="retrieved" options=""/>
 			</ArrayOptions>
 			<Information>
 				<Subtext>This table displays the data for Transport Streams, it contains columns: Id, Name, Multicast, Source IP address and Network ID.</Subtext>
@@ -257,9 +257,9 @@ Any inquiries can be addressed to:
 			<ArrayOptions index="0" options="naming=/2002">
 				<ColumnOption idx="0" pid="2001" type="retrieved" options=""/>
 				<ColumnOption idx="1" pid="2002" type="retrieved" options=""/>
-				<ColumnOption idx="2" pid="2003" type="retrieved" options=";save"/>
-				<ColumnOption idx="3" pid="2004" type="retrieved" options=";save"/>
-				<ColumnOption idx="4" pid="2005" type="retrieved" options=";save"/>
+				<ColumnOption idx="2" pid="2003" type="retrieved" options=""/>
+				<ColumnOption idx="3" pid="2004" type="retrieved" options=""/>
+				<ColumnOption idx="4" pid="2005" type="retrieved" options=""/>
 				<ColumnOption idx="5" pid="2006" type="retrieved" options=";foreignKey=1000"/>
 			</ArrayOptions>
 			<Information>
@@ -333,7 +333,17 @@ Any inquiries can be addressed to:
 				<RTDisplay>true</RTDisplay>
 			</Display>
 			<Measurement>
-				<Type>string</Type>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Digital Radio</Display>
+						<Value>digital_radio</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Digital Television</Display>
+						<Value>digital_television</Value>
+					</Discreet>
+				</Discreets>
 			</Measurement>
 		</Param>
 		<Param id="2004" trending="false">
